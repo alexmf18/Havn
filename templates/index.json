@@ -605,7 +605,7 @@
       "name": "Marquesina de consolas",
       "settings": {
         "movement_direction": "normal",
-        "background_color": "#241c40",
+        "background_color": "#25285B",
         "marquee_height": "auto",
         "custom_marquee_height": 80,
         "horizontal_border_width": 0,
