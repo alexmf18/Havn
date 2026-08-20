@@ -330,7 +330,7 @@
         "section_width": "full-width",
         "extend_media": true,
         "background_color": "#1B1533",
-        "padding-block-start": 0,
+        "padding-block-start": 46,
         "padding-block-end": 0
       }
     },
