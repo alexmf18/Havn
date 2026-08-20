@@ -398,6 +398,60 @@
       }
     },
     {
+      "name": "Hero de producto",
+      "category": "t:categories.storytelling",
+      "settings": {
+        "media_position": "right",
+        "media_width": "medium",
+        "media_height": "auto",
+        "section_width": "full-width"
+      },
+      "blocks": {
+        "media": {
+          "type": "_media-without-appearance",
+          "static": true
+        },
+        "content": {
+          "type": "_content-without-appearance",
+          "static": true,
+          "settings": {
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 24
+          },
+          "blocks": {
+            "heading": {
+              "type": "text",
+              "name": "t:names.heading",
+              "settings": {
+                "text": "<h1>Enciende. Elige tu década.</h1>",
+                "type_preset": "h1",
+                "max_width": "narrow"
+              }
+            },
+            "description": {
+              "type": "text",
+              "name": "t:names.text",
+              "settings": {
+                "text": "<p>Pantalla de 3.5&quot;, batería de 3000 mAh y cientos de clásicos listos para jugar. La consola portátil que llevabas esperando toda la década.</p>",
+                "type_preset": "rte",
+                "max_width": "narrow"
+              }
+            },
+            "button": {
+              "type": "button",
+              "settings": {
+                "label": "Comprar ahora",
+                "link": "shopify://collections/all",
+                "style_class": "button"
+              }
+            }
+          },
+          "block_order": ["heading", "description", "button"]
+        }
+      }
+    },
+    {
       "name": "t:names.editorial_jumbo_text",
       "category": "t:categories.storytelling",
       "settings": {
