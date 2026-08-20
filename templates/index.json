@@ -226,10 +226,11 @@
           "static": true,
           "settings": {
             "media_type": "image",
+            "image": "shopify://shop_images/consola1_sin_fondo.png",
             "link": "",
             "video_loop": true,
             "video_autoplay": false,
-            "image_position": "cover",
+            "image_position": "contain",
             "video_position": "cover"
           },
           "blocks": {}
