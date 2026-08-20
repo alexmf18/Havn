@@ -22,7 +22,18 @@
             "video_loop": true,
             "video_autoplay": false,
             "image_position": "contain",
-            "video_position": "cover"
+            "video_position": "cover",
+            "width": "custom",
+            "custom_width": 83,
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_color": "",
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
           },
           "blocks": {}
         },
@@ -120,7 +131,7 @@
         "media_height": "80svh",
         "section_width": "full-width",
         "extend_media": true,
-        "background_color": "#1B1533",
+        "background_color": "#1b1533",
         "padding-block-start": 46,
         "padding-block-end": 0
       }
