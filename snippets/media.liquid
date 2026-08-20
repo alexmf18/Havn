@@ -37,6 +37,9 @@
     {% render 'spacing-style', settings: block_settings %}
     --image-position: {{ block_settings.image_position }};
     --video-position: {{ block_settings.video_position }};
+    {% if block_settings.image.presentation.focal_point %}
+      --media-focal-point: {{ block_settings.image.presentation.focal_point }};
+    {% endif %}
   "
   {{ block.shopify_attributes }}
 >
@@ -92,7 +95,7 @@
   .media-block__media {
     height: var(--media-height-mobile, auto);
     object-fit: var(--image-position, 'cover');
-    object-position: center center;
+    object-position: var(--media-focal-point, center center);
     width: 100%;
 
     @media screen and (min-width: 750px) {
