@@ -40,6 +40,9 @@
     {% if block_settings.image.presentation.focal_point %}
       --media-focal-point: {{ block_settings.image.presentation.focal_point }};
     {% endif %}
+    {% if block_settings.width == 'custom' %}
+      --media-block-width: {{ block_settings.custom_width | default: 100 }}%;
+    {% endif %}
   "
   {{ block.shopify_attributes }}
 >
@@ -89,6 +92,8 @@
 
     @media screen and (min-width: 750px) {
       min-height: var(--media-height);
+      width: var(--media-block-width, 100%);
+      margin-inline: auto;
     }
   }
 
