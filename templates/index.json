@@ -610,7 +610,7 @@
         "custom_marquee_height": 40,
         "horizontal_border_width": 1,
         "horizontal_border_color": "",
-        "padding-block-start": 20,
+        "padding-block-start": 25,
         "padding-block-end": 25,
         "gap_between_elements": 24
       }
