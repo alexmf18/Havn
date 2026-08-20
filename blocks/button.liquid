@@ -86,6 +86,52 @@
     },
     {
       "type": "header",
+      "content": "t:content.borders",
+      "visible_if": "{{ block.settings.style_class != 'button-unstyled' }}"
+    },
+    {
+      "type": "select",
+      "id": "border_width",
+      "label": "t:settings.border_width",
+      "options": [
+        {
+          "value": "",
+          "label": "t:options.default"
+        },
+        {
+          "value": "0",
+          "label": "0px"
+        },
+        {
+          "value": "1",
+          "label": "1px"
+        },
+        {
+          "value": "2",
+          "label": "2px"
+        },
+        {
+          "value": "3",
+          "label": "3px"
+        },
+        {
+          "value": "4",
+          "label": "4px"
+        },
+        {
+          "value": "6",
+          "label": "6px"
+        },
+        {
+          "value": "8",
+          "label": "8px"
+        }
+      ],
+      "default": "",
+      "visible_if": "{{ block.settings.style_class != 'button-unstyled' }}"
+    },
+    {
+      "type": "header",
       "content": "t:content.size"
     },
     {

@@ -9,6 +9,14 @@
   {% render 'button-custom-styles', block_settings: block_settings, block_id: block.id %}
 {% enddoc %}
 
+{% if block_settings.border_width != blank %}
+  {% style %}
+    .{{ block_settings.style_class }}--{{ block_id }} {
+      --button-border-width: {{ block_settings.border_width }}px;
+    }
+  {% endstyle %}
+{% endif %}
+
 {% if block_settings.style_class == 'button-unstyled' and block_settings.link_text_color != blank %}
   {% style %}
     .button-unstyled--{{ block_id }},
