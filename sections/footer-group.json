@@ -289,11 +289,80 @@
         "padding-block-start": 20,
         "padding-block-end": 18
       }
+    },
+    "retro_footer_modo": {
+      "type": "retro-footer",
+      "blocks": {
+        "menu_shop": {
+          "type": "menu_column",
+          "settings": {
+            "heading": "Tienda",
+            "link_1_label": "La consola",
+            "link_1_url": "#",
+            "link_2_label": "Juegos incluidos",
+            "link_2_url": "#",
+            "link_3_label": "Accesorios",
+            "link_3_url": "#",
+            "link_4_label": "",
+            "link_4_url": ""
+          }
+        },
+        "menu_help": {
+          "type": "menu_column",
+          "settings": {
+            "heading": "Ayuda",
+            "link_1_label": "Envios",
+            "link_1_url": "#",
+            "link_2_label": "Devoluciones",
+            "link_2_url": "#",
+            "link_3_label": "Contacto",
+            "link_3_url": "#",
+            "link_4_label": "",
+            "link_4_url": ""
+          }
+        },
+        "menu_legal": {
+          "type": "menu_column",
+          "settings": {
+            "heading": "Legal",
+            "link_1_label": "Aviso legal",
+            "link_1_url": "#",
+            "link_2_label": "Privacidad",
+            "link_2_url": "#",
+            "link_3_label": "Cookies",
+            "link_3_url": "#",
+            "link_4_label": "",
+            "link_4_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "menu_shop",
+        "menu_help",
+        "menu_legal"
+      ],
+      "name": "Footer retro",
+      "settings": {
+        "logo": "",
+        "logo_text": "Modo Retro",
+        "text": "<p>Tu infancia, en el bolsillo. Valencia, Espana.</p>",
+        "navigation_label": "Enlaces del footer",
+        "section_width": "full-width",
+        "background_color": "#121323",
+        "heading_color": "#F1EEFA",
+        "text_color": "#F1EEFA",
+        "muted_color": "#9B92B8",
+        "border_color": "#4CC9F033",
+        "logo_size": 140,
+        "heading_size": 16,
+        "link_size": 14,
+        "column_gap": 96,
+        "padding-block-start": 40,
+        "padding-block-end": 52
+      }
     }
   },
   "order": [
-    "media_with_content_RqxiU3",
-    "footer",
-    "utilities"
+    "retro_footer_modo"
   ]
 }
