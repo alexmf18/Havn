@@ -1,6 +1,7 @@
 {% liquid
   assign console_blocks = section.blocks | where: 'type', 'console'
   assign stat_blocks = section.blocks | where: 'type', 'stat'
+  assign image_resolution = section.settings.image_resolution | plus: 0
 
   if section.settings.background_color != blank
     render 'contrast-override', background_color: section.settings.background_color, section_id: section.id
@@ -30,6 +31,10 @@
     --console-description-text-size: {{ section.settings.text_size }}px;
     --console-description-chip-size: {{ section.settings.chip_text_size }}px;
     --console-description-stat-size: {{ section.settings.stat_value_size }}px;
+    --console-description-image-fit: {{ section.settings.image_fit }};
+    --console-description-image-ratio: {{ section.settings.image_ratio }};
+    --console-description-image-max-height: {{ section.settings.image_max_height }}px;
+    --console-description-image-background: {{ section.settings.image_background_color }};
     --console-description-image-radius: {{ section.settings.image_border_radius }}px;
     --console-description-image-border-width: {{ section.settings.image_border_width }}px;
     --console-description-image-border: {{ section.settings.image_border_color }};
@@ -87,9 +92,9 @@
       {%- if section.settings.image != blank -%}
         {{
           section.settings.image
-          | image_url: width: 1600
+          | image_url: width: image_resolution
           | image_tag:
-            widths: '360, 533, 720, 900, 1200, 1600',
+            widths: '360, 533, 720, 900, 1200, 1600, 2048, 2400',
             sizes: '(min-width: 990px) 42vw, 100vw',
             alt: section.settings.image.alt,
             loading: 'lazy',
@@ -232,8 +237,10 @@
   .console-description__image {
     display: block;
     width: 100%;
-    aspect-ratio: 1 / 1;
-    object-fit: cover;
+    max-height: var(--console-description-image-max-height);
+    aspect-ratio: var(--console-description-image-ratio);
+    object-fit: var(--console-description-image-fit);
+    background: var(--console-description-image-background, transparent);
     border: var(--console-description-image-border-width) solid var(--console-description-image-border, #f1eefa);
     border-radius: var(--console-description-image-radius);
   }
@@ -528,6 +535,95 @@
       "content": "Imagen"
     },
     {
+      "type": "select",
+      "id": "image_fit",
+      "label": "Ajuste de imagen",
+      "options": [
+        {
+          "value": "contain",
+          "label": "Ver completa"
+        },
+        {
+          "value": "cover",
+          "label": "Cubrir caja"
+        }
+      ],
+      "default": "contain"
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "label": "Proporcion de imagen",
+      "options": [
+        {
+          "value": "auto",
+          "label": "Original"
+        },
+        {
+          "value": "1 / 1",
+          "label": "Cuadrada"
+        },
+        {
+          "value": "4 / 5",
+          "label": "Vertical"
+        },
+        {
+          "value": "4 / 3",
+          "label": "Clasica"
+        },
+        {
+          "value": "16 / 9",
+          "label": "Panoramica"
+        }
+      ],
+      "default": "1 / 1"
+    },
+    {
+      "type": "range",
+      "id": "image_max_height",
+      "label": "Alto maximo de imagen",
+      "min": 260,
+      "max": 900,
+      "step": 20,
+      "unit": "px",
+      "default": 520
+    },
+    {
+      "type": "select",
+      "id": "image_resolution",
+      "label": "Resolucion de carga",
+      "options": [
+        {
+          "value": "720",
+          "label": "720 px"
+        },
+        {
+          "value": "1200",
+          "label": "1200 px"
+        },
+        {
+          "value": "1600",
+          "label": "1600 px"
+        },
+        {
+          "value": "2048",
+          "label": "2048 px"
+        },
+        {
+          "value": "2400",
+          "label": "2400 px"
+        }
+      ],
+      "default": "1600"
+    },
+    {
+      "type": "color",
+      "id": "image_background_color",
+      "label": "Fondo de imagen",
+      "alpha": true,
+      "default": "#00000000"
+    },
+    {
       "type": "range",
       "id": "image_border_radius",
       "label": "Radio de imagen",
@@ -545,7 +641,7 @@
       "max": 12,
       "step": 1,
       "unit": "px",
-      "default": 6
+      "default": 0
     },
     {
       "type": "color",
