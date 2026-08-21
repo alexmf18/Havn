@@ -923,6 +923,108 @@
         "padding-block-start": 0,
         "padding-block-end": 0
       }
+    },
+    "shipping_faq_tkR8pL": {
+      "type": "shipping-faq",
+      "blocks": {
+        "shipping_peninsula": {
+          "type": "shipping_row",
+          "settings": {
+            "region": "Peninsula",
+            "delivery": "24-48 h · gratis"
+          }
+        },
+        "shipping_baleares": {
+          "type": "shipping_row",
+          "settings": {
+            "region": "Baleares",
+            "delivery": "48-72 h · gratis"
+          }
+        },
+        "shipping_canarias": {
+          "type": "shipping_row",
+          "settings": {
+            "region": "Canarias y Ceuta",
+            "delivery": "3-5 dias · 6 €"
+          }
+        },
+        "shipping_ue": {
+          "type": "shipping_row",
+          "settings": {
+            "region": "Resto de la UE",
+            "delivery": "4-6 dias · 9 €"
+          }
+        },
+        "question_games": {
+          "type": "question",
+          "settings": {
+            "question": "¿Los juegos vienen incluidos?",
+            "answer": "<p>Si. La tarjeta de 64 GB llega cargada y organizada por consola. Puedes anadir tus propios archivos copiandolos a la tarjeta desde el ordenador.</p>",
+            "open_by_default": true
+          }
+        },
+        "question_install": {
+          "type": "question",
+          "settings": {
+            "question": "¿Hay que instalar algo?",
+            "answer": "<p>No. La consola llega preparada para encender, elegir sistema y jugar.</p>",
+            "open_by_default": false
+          }
+        },
+        "question_tv": {
+          "type": "question",
+          "settings": {
+            "question": "¿Se puede conectar a la television?",
+            "answer": "<p>Si el modelo incluye salida de video, puedes conectarla con el cable compatible correspondiente.</p>",
+            "open_by_default": false
+          }
+        },
+        "question_warranty": {
+          "type": "question",
+          "settings": {
+            "question": "¿Que cubre la garantia de 2 anos?",
+            "answer": "<p>Cubre defectos de fabricacion y fallos no provocados por golpes, agua o manipulacion indebida.</p>",
+            "open_by_default": false
+          }
+        },
+        "question_returns": {
+          "type": "question",
+          "settings": {
+            "question": "¿Como devuelvo el pedido?",
+            "answer": "<p>Contactanos durante el periodo de devolucion y te indicamos los pasos para recogerlo.</p>",
+            "open_by_default": false
+          }
+        }
+      },
+      "block_order": [
+        "shipping_peninsula",
+        "shipping_baleares",
+        "shipping_canarias",
+        "shipping_ue",
+        "question_games",
+        "question_install",
+        "question_tv",
+        "question_warranty",
+        "question_returns"
+      ],
+      "name": "Envios y preguntas",
+      "settings": {
+        "heading": "Envios y preguntas",
+        "text": "<p>Salimos de Valencia. Pedidos antes de las 15:00 se envian el mismo dia.</p>",
+        "section_width": "full-width",
+        "background_color": "#1b1533",
+        "heading_color": "#f1eefa",
+        "text_color": "#f1eefa",
+        "muted_color": "#9b92b8",
+        "accent_color": "#a99bff",
+        "divider_color": "#4CC9F033",
+        "heading_size": 34,
+        "text_size": 16,
+        "question_size": 17,
+        "column_gap": 56,
+        "padding-block-start": 56,
+        "padding-block-end": 56
+      }
     }
   },
   "order": [
@@ -931,6 +1033,7 @@
     "retro_feature_columns_czVqpj",
     "console_description_8Kqf3L",
     "box_contents_aneE9j",
-    "warranty_cta_V9mQp2"
+    "warranty_cta_V9mQp2",
+    "shipping_faq_tkR8pL"
   ]
 }

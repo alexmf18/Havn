@@ -1,0 +1,493 @@
+{% liquid
+  assign shipping_blocks = section.blocks | where: 'type', 'shipping_row'
+  assign question_blocks = section.blocks | where: 'type', 'question'
+
+  if section.settings.background_color != blank
+    render 'contrast-override', background_color: section.settings.background_color, section_id: section.id
+  endif
+%}
+
+<div
+  class="section-background{% if section.settings.background_color != blank %} color-custom-{{ section.id }}{% endif %}"
+></div>
+
+<section
+  class="shipping-faq section section--{{ section.settings.section_width }} spacing-style{% if section.settings.background_color != blank %} color-custom-{{ section.id }}{% endif %}"
+  style="
+    {% render 'spacing-style', settings: section.settings %}
+    --shipping-faq-heading: {{ section.settings.heading_color }};
+    --shipping-faq-text: {{ section.settings.text_color }};
+    --shipping-faq-muted: {{ section.settings.muted_color }};
+    --shipping-faq-accent: {{ section.settings.accent_color }};
+    --shipping-faq-divider: {{ section.settings.divider_color }};
+    --shipping-faq-heading-size: {{ section.settings.heading_size }}px;
+    --shipping-faq-text-size: {{ section.settings.text_size }}px;
+    --shipping-faq-question-size: {{ section.settings.question_size }}px;
+    --shipping-faq-gap: {{ section.settings.column_gap }}px;
+  "
+>
+  <div class="shipping-faq__inner">
+    <div class="shipping-faq__shipping">
+      {%- if section.settings.heading != blank -%}
+        <h2 class="shipping-faq__heading">{{ section.settings.heading | escape }}</h2>
+      {%- endif -%}
+
+      {%- if section.settings.text != blank -%}
+        <div class="shipping-faq__intro">
+          {{ section.settings.text }}
+        </div>
+      {%- endif -%}
+
+      {%- if shipping_blocks.size > 0 -%}
+        <div class="shipping-faq__rates">
+          {%- for block in shipping_blocks -%}
+            <div
+              class="shipping-faq__rate"
+              {{ block.shopify_attributes }}
+            >
+              <span>{{ block.settings.region | escape }}</span>
+              <strong>{{ block.settings.delivery | escape }}</strong>
+            </div>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    </div>
+
+    {%- if question_blocks.size > 0 -%}
+      <div class="shipping-faq__questions">
+        {%- for block in question_blocks -%}
+          <details
+            class="shipping-faq__item"
+            {% if block.settings.open_by_default %}
+              open
+            {% endif %}
+            {{ block.shopify_attributes }}
+          >
+            <summary class="shipping-faq__summary">
+              <span>{{ block.settings.question | escape }}</span>
+              <span class="shipping-faq__icon" aria-hidden="true"></span>
+            </summary>
+
+            {%- if block.settings.answer != blank -%}
+              <div class="shipping-faq__answer">
+                {{ block.settings.answer }}
+              </div>
+            {%- endif -%}
+          </details>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% stylesheet %}
+  .shipping-faq {
+    background: var(--color-background, transparent);
+  }
+
+  .shipping-faq__inner {
+    display: grid;
+    grid-template-columns: minmax(24rem, 0.8fr) minmax(0, 1.55fr);
+    gap: var(--shipping-faq-gap);
+    align-items: start;
+    border-block: 1px solid var(--shipping-faq-divider, rgb(76 201 240 / 18%));
+  }
+
+  .shipping-faq__heading {
+    margin: 0;
+    color: var(--shipping-faq-heading, #f1eefa);
+    font-family: var(--font-primary--family);
+    font-size: var(--shipping-faq-heading-size);
+    font-style: var(--font-primary--style);
+    font-weight: 600;
+    letter-spacing: 0;
+    line-height: 1.12;
+  }
+
+  .shipping-faq__intro {
+    max-width: 36rem;
+    margin-block-start: 1rem;
+    color: var(--shipping-faq-muted, #9b92b8);
+    font-size: var(--shipping-faq-text-size);
+    line-height: 1.45;
+  }
+
+  .shipping-faq__intro > * {
+    margin: 0;
+  }
+
+  .shipping-faq__rates {
+    display: grid;
+    gap: 0.7rem;
+    max-width: 34rem;
+    margin-block-start: 2.8rem;
+    color: var(--shipping-faq-text, #f1eefa);
+    font-size: var(--shipping-faq-text-size);
+  }
+
+  .shipping-faq__rate {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 1.6rem;
+    align-items: baseline;
+    padding-block-end: 0.3rem;
+    border-block-end: 1px solid var(--shipping-faq-divider, rgb(76 201 240 / 18%));
+  }
+
+  .shipping-faq__rate span {
+    color: var(--shipping-faq-muted, #9b92b8);
+  }
+
+  .shipping-faq__rate strong {
+    color: var(--shipping-faq-text, #f1eefa);
+    font-family: var(--font-accent--family);
+    font-style: var(--font-accent--style);
+    font-weight: 700;
+    text-align: right;
+  }
+
+  .shipping-faq__questions {
+    border-block-start: 1px solid var(--shipping-faq-divider, rgb(76 201 240 / 18%));
+  }
+
+  .shipping-faq__item {
+    border-block-end: 1px solid var(--shipping-faq-divider, rgb(76 201 240 / 18%));
+  }
+
+  .shipping-faq__summary {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 1.6rem;
+    align-items: center;
+    padding: 2rem 0;
+    color: var(--shipping-faq-heading, #f1eefa);
+    cursor: pointer;
+    font-family: var(--font-accent--family);
+    font-size: var(--shipping-faq-question-size);
+    font-style: var(--font-accent--style);
+    font-weight: 700;
+    line-height: 1.25;
+    list-style: none;
+  }
+
+  .shipping-faq__summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .shipping-faq__icon {
+    position: relative;
+    width: 1.2rem;
+    height: 1.2rem;
+  }
+
+  .shipping-faq__icon::before,
+  .shipping-faq__icon::after {
+    content: '';
+    position: absolute;
+    inset-block-start: 50%;
+    inset-inline-start: 0;
+    width: 100%;
+    height: 0.2rem;
+    background: var(--shipping-faq-accent, #a99bff);
+    transform: translateY(-50%);
+  }
+
+  .shipping-faq__icon::after {
+    transform: translateY(-50%) rotate(90deg);
+  }
+
+  .shipping-faq__item[open] .shipping-faq__icon::after {
+    opacity: 0;
+  }
+
+  .shipping-faq__answer {
+    max-width: 65rem;
+    margin-block: -0.6rem 1.8rem;
+    color: var(--shipping-faq-muted, #9b92b8);
+    font-size: var(--shipping-faq-text-size);
+    line-height: 1.55;
+  }
+
+  .shipping-faq__answer > * {
+    margin: 0;
+  }
+
+  .shipping-faq__answer > * + * {
+    margin-block-start: 0.8rem;
+  }
+
+  @media screen and (max-width: 899px) {
+    .shipping-faq__inner {
+      grid-template-columns: 1fr;
+      gap: 3.6rem;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Envios y preguntas",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "blocks": [
+    {
+      "type": "shipping_row",
+      "name": "Fila de envio",
+      "settings": [
+        {
+          "type": "text",
+          "id": "region",
+          "label": "Region",
+          "default": "Peninsula"
+        },
+        {
+          "type": "text",
+          "id": "delivery",
+          "label": "Plazo y precio",
+          "default": "24-48 h · gratis"
+        }
+      ]
+    },
+    {
+      "type": "question",
+      "name": "Pregunta",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Pregunta",
+          "default": "¿Los juegos vienen incluidos?"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Respuesta",
+          "default": "<p>Si. La tarjeta llega cargada y organizada por consola.</p>"
+        },
+        {
+          "type": "checkbox",
+          "id": "open_by_default",
+          "label": "Abierta por defecto",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Titulo",
+      "default": "Envios y preguntas"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Texto",
+      "default": "<p>Salimos de Valencia. Pedidos antes de las 15:00 se envian el mismo dia.</p>"
+    },
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "Ancho",
+      "options": [
+        {
+          "value": "page-width",
+          "label": "Pagina"
+        },
+        {
+          "value": "full-width",
+          "label": "Completo"
+        }
+      ],
+      "default": "full-width"
+    },
+    {
+      "type": "header",
+      "content": "Colores"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Color de fondo",
+      "default": "#1B1533"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Color de titulos",
+      "default": "#F1EEFA"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Color principal",
+      "default": "#F1EEFA"
+    },
+    {
+      "type": "color",
+      "id": "muted_color",
+      "label": "Color secundario",
+      "default": "#9B92B8"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Color de iconos",
+      "default": "#A99BFF"
+    },
+    {
+      "type": "color",
+      "id": "divider_color",
+      "label": "Color de divisores",
+      "alpha": true,
+      "default": "#4CC9F033"
+    },
+    {
+      "type": "header",
+      "content": "Tipografia"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Tamano de titulo",
+      "min": 24,
+      "max": 56,
+      "step": 1,
+      "unit": "px",
+      "default": 34
+    },
+    {
+      "type": "range",
+      "id": "text_size",
+      "label": "Tamano de texto",
+      "min": 13,
+      "max": 22,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "question_size",
+      "label": "Tamano de preguntas",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 17
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "column_gap",
+      "label": "Separacion de columnas",
+      "min": 24,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 56
+    },
+    {
+      "type": "header",
+      "content": "Espaciado"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Superior",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 56
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Inferior",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 56
+    }
+  ],
+  "presets": [
+    {
+      "name": "Envios y preguntas",
+      "category": "Texto",
+      "blocks": [
+        {
+          "type": "shipping_row",
+          "settings": {
+            "region": "Peninsula",
+            "delivery": "24-48 h · gratis"
+          }
+        },
+        {
+          "type": "shipping_row",
+          "settings": {
+            "region": "Baleares",
+            "delivery": "48-72 h · gratis"
+          }
+        },
+        {
+          "type": "shipping_row",
+          "settings": {
+            "region": "Canarias y Ceuta",
+            "delivery": "3-5 dias · 6 €"
+          }
+        },
+        {
+          "type": "shipping_row",
+          "settings": {
+            "region": "Resto de la UE",
+            "delivery": "4-6 dias · 9 €"
+          }
+        },
+        {
+          "type": "question",
+          "settings": {
+            "question": "¿Los juegos vienen incluidos?",
+            "answer": "<p>Si. La tarjeta de 64 GB llega cargada y organizada por consola. Puedes anadir tus propios archivos copiandolos a la tarjeta desde el ordenador.</p>",
+            "open_by_default": true
+          }
+        },
+        {
+          "type": "question",
+          "settings": {
+            "question": "¿Hay que instalar algo?",
+            "answer": "<p>No. La consola llega preparada para encender, elegir sistema y jugar.</p>"
+          }
+        },
+        {
+          "type": "question",
+          "settings": {
+            "question": "¿Se puede conectar a la television?",
+            "answer": "<p>Si el modelo incluye salida de video, puedes conectarla con el cable compatible correspondiente.</p>"
+          }
+        },
+        {
+          "type": "question",
+          "settings": {
+            "question": "¿Que cubre la garantia de 2 anos?",
+            "answer": "<p>Cubre defectos de fabricacion y fallos no provocados por golpes, agua o manipulacion indebida.</p>"
+          }
+        },
+        {
+          "type": "question",
+          "settings": {
+            "question": "¿Como devuelvo el pedido?",
+            "answer": "<p>Contactanos durante el periodo de devolucion y te indicamos los pasos para recogerlo.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
