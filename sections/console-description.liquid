@@ -1,0 +1,698 @@
+{% liquid
+  assign console_blocks = section.blocks | where: 'type', 'console'
+  assign stat_blocks = section.blocks | where: 'type', 'stat'
+
+  if section.settings.background_color != blank
+    render 'contrast-override', background_color: section.settings.background_color, section_id: section.id
+  endif
+%}
+
+<div
+  class="section-background{% if section.settings.background_color != blank %} color-custom-{{ section.id }}{% endif %}"
+></div>
+
+<section
+  class="console-description section section--{{ section.settings.section_width }} spacing-style console-description--image-{{ section.settings.image_position }}{% if section.settings.background_color != blank %} color-custom-{{ section.id }}{% endif %}"
+  style="
+    {% render 'spacing-style', settings: section.settings %}
+    --console-description-surface: {{ section.settings.surface_color }};
+    --console-description-text: {{ section.settings.text_color }};
+    --console-description-muted: {{ section.settings.muted_color }};
+    --console-description-heading: {{ section.settings.heading_color }};
+    --console-description-accent: {{ section.settings.accent_color }};
+    --console-description-chip-bg: {{ section.settings.chip_background_color }};
+    --console-description-chip-active-bg: {{ section.settings.chip_active_background_color }};
+    --console-description-divider: {{ section.settings.divider_color }};
+    --console-description-image-width: {{ section.settings.image_width }}%;
+    --console-description-gap: {{ section.settings.column_gap }}px;
+    --console-description-heading-size: {{ section.settings.heading_size }}px;
+    --console-description-heading-size-mobile: {{ section.settings.heading_size_mobile }}px;
+    --console-description-text-size: {{ section.settings.text_size }}px;
+    --console-description-chip-size: {{ section.settings.chip_text_size }}px;
+    --console-description-stat-size: {{ section.settings.stat_value_size }}px;
+    --console-description-image-radius: {{ section.settings.image_border_radius }}px;
+    --console-description-image-border-width: {{ section.settings.image_border_width }}px;
+    --console-description-image-border: {{ section.settings.image_border_color }};
+  "
+>
+  <div class="console-description__inner">
+    <div class="console-description__content">
+      {%- if section.settings.heading != blank -%}
+        <h2 class="console-description__heading">{{ section.settings.heading | escape }}</h2>
+      {%- endif -%}
+
+      {%- if section.settings.text != blank -%}
+        <div class="console-description__text">
+          {{ section.settings.text }}
+        </div>
+      {%- endif -%}
+
+      {%- if console_blocks.size > 0 -%}
+        <div
+          class="console-description__chips"
+          aria-label="{{ section.settings.console_list_label | escape }}"
+        >
+          {%- for block in console_blocks -%}
+            <span
+              class="console-description__chip{% if block.settings.highlight %} console-description__chip--highlight{% endif %}"
+              {{ block.shopify_attributes }}
+            >
+              {{ block.settings.name | escape }}
+            </span>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+
+      {%- if stat_blocks.size > 0 -%}
+        <div class="console-description__stats">
+          {%- for block in stat_blocks -%}
+            <div
+              class="console-description__stat"
+              {{ block.shopify_attributes }}
+            >
+              {%- if block.settings.value != blank -%}
+                <p class="console-description__stat-value">{{ block.settings.value | escape }}</p>
+              {%- endif -%}
+
+              {%- if block.settings.label != blank -%}
+                <p class="console-description__stat-label">{{ block.settings.label | escape }}</p>
+              {%- endif -%}
+            </div>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    </div>
+
+    <figure class="console-description__media">
+      {%- if section.settings.image != blank -%}
+        {{
+          section.settings.image
+          | image_url: width: 1600
+          | image_tag:
+            widths: '360, 533, 720, 900, 1200, 1600',
+            sizes: '(min-width: 990px) 42vw, 100vw',
+            alt: section.settings.image.alt,
+            loading: 'lazy',
+            class: 'console-description__image'
+        }}
+      {%- else -%}
+        {{ 'product-1' | placeholder_svg_tag: 'console-description__image console-description__image--placeholder' }}
+      {%- endif -%}
+
+      {%- if section.settings.caption != blank -%}
+        <figcaption class="console-description__caption">{{ section.settings.caption | escape }}</figcaption>
+      {%- endif -%}
+    </figure>
+  </div>
+</section>
+
+{% stylesheet %}
+  .console-description {
+    background: var(--color-background, transparent);
+    color: var(--console-description-text, #f1eefa);
+  }
+
+  .console-description__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(260px, var(--console-description-image-width));
+    grid-template-areas: 'content media';
+    gap: var(--console-description-gap);
+    align-items: center;
+    background: var(--console-description-surface, transparent);
+  }
+
+  .console-description--image-left .console-description__inner {
+    grid-template-columns: minmax(260px, var(--console-description-image-width)) minmax(0, 1fr);
+    grid-template-areas: 'media content';
+  }
+
+  .console-description__content {
+    grid-area: content;
+    min-width: 0;
+  }
+
+  .console-description__heading {
+    max-width: 11em;
+    margin: 0;
+    color: var(--console-description-heading, #f1eefa);
+    font-family: var(--font-primary--family);
+    font-size: var(--console-description-heading-size);
+    font-style: var(--font-primary--style);
+    font-weight: 600;
+    letter-spacing: 0;
+    line-height: 1.08;
+  }
+
+  .console-description__text {
+    max-width: 42rem;
+    margin-block-start: 1.8rem;
+    color: var(--console-description-muted, #9b92b8);
+    font-family: var(--font-body--family);
+    font-size: var(--console-description-text-size);
+    line-height: 1.55;
+  }
+
+  .console-description__text > * {
+    margin: 0;
+  }
+
+  .console-description__text > * + * {
+    margin-block-start: 0.8rem;
+  }
+
+  .console-description__chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    margin-block-start: 3.2rem;
+  }
+
+  .console-description__chip {
+    display: inline-flex;
+    align-items: center;
+    min-height: 3.2rem;
+    padding: 0.5rem 1.2rem;
+    border: 1px solid var(--console-description-accent, #4cc9f0);
+    border-radius: 0.6rem;
+    background: var(--console-description-chip-bg, transparent);
+    color: var(--console-description-accent, #4cc9f0);
+    font-family: var(--font-accent--family);
+    font-size: var(--console-description-chip-size);
+    font-style: var(--font-accent--style);
+    font-weight: 500;
+    line-height: 1.2;
+  }
+
+  .console-description__chip--highlight {
+    border-color: transparent;
+    background: var(--console-description-chip-active-bg, #4d437a);
+    color: var(--console-description-heading, #f1eefa);
+    font-weight: 700;
+  }
+
+  .console-description__stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 2.4rem;
+    margin-block-start: 3.8rem;
+    padding-block-start: 3.2rem;
+    border-block-start: 1px solid var(--console-description-divider, rgb(76 201 240 / 18%));
+  }
+
+  .console-description__stat-value,
+  .console-description__stat-label {
+    margin: 0;
+  }
+
+  .console-description__stat-value {
+    color: var(--console-description-heading, #f1eefa);
+    font-family: var(--font-accent--family);
+    font-size: var(--console-description-stat-size);
+    font-style: var(--font-accent--style);
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: 1;
+  }
+
+  .console-description__stat-label {
+    margin-block-start: 1rem;
+    color: var(--console-description-muted, #9b92b8);
+    font-size: calc(var(--console-description-text-size) - 2px);
+    line-height: 1.35;
+  }
+
+  .console-description__media {
+    grid-area: media;
+    margin: 0;
+    justify-self: center;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .console-description__image {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border: var(--console-description-image-border-width) solid var(--console-description-image-border, #f1eefa);
+    border-radius: var(--console-description-image-radius);
+  }
+
+  .console-description__image--placeholder {
+    background: rgb(255 255 255 / 4%);
+  }
+
+  .console-description__caption {
+    margin-block-start: 0.9rem;
+    color: var(--console-description-muted, #9b92b8);
+    font-size: calc(var(--console-description-text-size) - 2px);
+    line-height: 1.35;
+  }
+
+  @media screen and (max-width: 989px) {
+    .console-description__inner,
+    .console-description--image-left .console-description__inner {
+      grid-template-columns: 1fr;
+      grid-template-areas: 'content' 'media';
+      gap: 3.2rem;
+    }
+
+    .console-description__heading {
+      font-size: var(--console-description-heading-size-mobile);
+    }
+
+    .console-description__stats {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.6rem;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .console-description__stats {
+      grid-template-columns: 1fr;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Descripcion de consolas",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "blocks": [
+    {
+      "type": "console",
+      "name": "Consola emulada",
+      "settings": [
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Nombre",
+          "default": "Game Boy"
+        },
+        {
+          "type": "checkbox",
+          "id": "highlight",
+          "label": "Destacar",
+          "default": false
+        }
+      ]
+    },
+    {
+      "type": "stat",
+      "name": "Caracteristica",
+      "settings": [
+        {
+          "type": "text",
+          "id": "value",
+          "label": "Valor",
+          "default": "20 000"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Etiqueta",
+          "default": "juegos preinstalados"
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "header",
+      "content": "Contenido"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Titulo",
+      "default": "Once consolas, una sola caja"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Texto",
+      "default": "<p>Cada emulador llega instalado y probado. Los juegos ya estan dentro, ordenados por sistema.</p>"
+    },
+    {
+      "type": "text",
+      "id": "console_list_label",
+      "label": "Etiqueta accesible de la lista",
+      "default": "Consolas emuladas"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Imagen"
+    },
+    {
+      "type": "text",
+      "id": "caption",
+      "label": "Pie de imagen",
+      "default": "Azul y gris translucidos"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "Ancho",
+      "options": [
+        {
+          "value": "page-width",
+          "label": "Pagina"
+        },
+        {
+          "value": "full-width",
+          "label": "Completo"
+        }
+      ],
+      "default": "full-width"
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Posicion de imagen",
+      "options": [
+        {
+          "value": "right",
+          "label": "Derecha"
+        },
+        {
+          "value": "left",
+          "label": "Izquierda"
+        }
+      ],
+      "default": "right"
+    },
+    {
+      "type": "range",
+      "id": "image_width",
+      "label": "Ancho de imagen",
+      "min": 28,
+      "max": 55,
+      "step": 1,
+      "unit": "%",
+      "default": 34
+    },
+    {
+      "type": "range",
+      "id": "column_gap",
+      "label": "Separacion de columnas",
+      "min": 24,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 96
+    },
+    {
+      "type": "header",
+      "content": "Colores"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Color de fondo",
+      "default": "#1B1533"
+    },
+    {
+      "type": "color",
+      "id": "surface_color",
+      "label": "Color de superficie",
+      "alpha": true,
+      "default": "#0F102000"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Color de titulo",
+      "default": "#F1EEFA"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Color principal",
+      "default": "#F1EEFA"
+    },
+    {
+      "type": "color",
+      "id": "muted_color",
+      "label": "Color secundario",
+      "default": "#9B92B8"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Color de chips",
+      "default": "#A99BFF"
+    },
+    {
+      "type": "color",
+      "id": "chip_background_color",
+      "label": "Fondo de chips",
+      "alpha": true,
+      "default": "#1B153300"
+    },
+    {
+      "type": "color",
+      "id": "chip_active_background_color",
+      "label": "Fondo de chip destacado",
+      "default": "#4D437A"
+    },
+    {
+      "type": "color",
+      "id": "divider_color",
+      "label": "Color de divisor",
+      "alpha": true,
+      "default": "#4CC9F033"
+    },
+    {
+      "type": "header",
+      "content": "Tipografia"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Tamano de titulo",
+      "min": 28,
+      "max": 84,
+      "step": 1,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "heading_size_mobile",
+      "label": "Tamano de titulo en movil",
+      "min": 24,
+      "max": 56,
+      "step": 1,
+      "unit": "px",
+      "default": 38
+    },
+    {
+      "type": "range",
+      "id": "text_size",
+      "label": "Tamano de texto",
+      "min": 13,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "chip_text_size",
+      "label": "Tamano de chips",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "stat_value_size",
+      "label": "Tamano de metricas",
+      "min": 24,
+      "max": 56,
+      "step": 1,
+      "unit": "px",
+      "default": 36
+    },
+    {
+      "type": "header",
+      "content": "Imagen"
+    },
+    {
+      "type": "range",
+      "id": "image_border_radius",
+      "label": "Radio de imagen",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "image_border_width",
+      "label": "Grosor de borde",
+      "min": 0,
+      "max": 12,
+      "step": 1,
+      "unit": "px",
+      "default": 6
+    },
+    {
+      "type": "color",
+      "id": "image_border_color",
+      "label": "Color de borde",
+      "default": "#F1EEFA"
+    },
+    {
+      "type": "header",
+      "content": "Espaciado"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Superior",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Inferior",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 64
+    }
+  ],
+  "presets": [
+    {
+      "name": "Descripcion de consolas",
+      "category": "Texto",
+      "blocks": [
+        {
+          "type": "console",
+          "settings": {
+            "name": "NES"
+          }
+        },
+        {
+          "type": "console",
+          "settings": {
+            "name": "Game Boy"
+          }
+        },
+        {
+          "type": "console",
+          "settings": {
+            "name": "GBA"
+          }
+        },
+        {
+          "type": "console",
+          "settings": {
+            "name": "Mega Drive"
+          }
+        },
+        {
+          "type": "console",
+          "settings": {
+            "name": "Super Nintendo"
+          }
+        },
+        {
+          "type": "console",
+          "settings": {
+            "name": "MAME"
+          }
+        },
+        {
+          "type": "console",
+          "settings": {
+            "name": "Capcom CPS"
+          }
+        },
+        {
+          "type": "console",
+          "settings": {
+            "name": "PlayStation"
+          }
+        },
+        {
+          "type": "console",
+          "settings": {
+            "name": "PSP"
+          }
+        },
+        {
+          "type": "console",
+          "settings": {
+            "name": "Nintendo DS"
+          }
+        },
+        {
+          "type": "console",
+          "settings": {
+            "name": "Nintendo 64"
+          }
+        },
+        {
+          "type": "console",
+          "settings": {
+            "name": "Neo Geo",
+            "highlight": true
+          }
+        },
+        {
+          "type": "console",
+          "settings": {
+            "name": "Atari 2600",
+            "highlight": true
+          }
+        },
+        {
+          "type": "console",
+          "settings": {
+            "name": "PC Engine",
+            "highlight": true
+          }
+        },
+        {
+          "type": "stat",
+          "settings": {
+            "value": "20 000",
+            "label": "juegos preinstalados"
+          }
+        },
+        {
+          "type": "stat",
+          "settings": {
+            "value": "64 GB",
+            "label": "tarjeta incluida"
+          }
+        },
+        {
+          "type": "stat",
+          "settings": {
+            "value": "190 g",
+            "label": "peso con bateria"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

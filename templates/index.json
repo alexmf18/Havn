@@ -614,10 +614,185 @@
         "padding-block-end": 25,
         "gap_between_elements": 24
       }
+    },
+    "console_description_8Kqf3L": {
+      "type": "console-description",
+      "blocks": {
+        "console_NES": {
+          "type": "console",
+          "settings": {
+            "name": "NES",
+            "highlight": false
+          }
+        },
+        "console_game_boy": {
+          "type": "console",
+          "settings": {
+            "name": "Game Boy",
+            "highlight": false
+          }
+        },
+        "console_gba": {
+          "type": "console",
+          "settings": {
+            "name": "GBA",
+            "highlight": false
+          }
+        },
+        "console_mega_drive": {
+          "type": "console",
+          "settings": {
+            "name": "Mega Drive",
+            "highlight": false
+          }
+        },
+        "console_snes": {
+          "type": "console",
+          "settings": {
+            "name": "Super Nintendo",
+            "highlight": false
+          }
+        },
+        "console_mame": {
+          "type": "console",
+          "settings": {
+            "name": "MAME",
+            "highlight": false
+          }
+        },
+        "console_cps": {
+          "type": "console",
+          "settings": {
+            "name": "Capcom CPS",
+            "highlight": false
+          }
+        },
+        "console_playstation": {
+          "type": "console",
+          "settings": {
+            "name": "PlayStation",
+            "highlight": false
+          }
+        },
+        "console_psp": {
+          "type": "console",
+          "settings": {
+            "name": "PSP",
+            "highlight": false
+          }
+        },
+        "console_ds": {
+          "type": "console",
+          "settings": {
+            "name": "Nintendo DS",
+            "highlight": false
+          }
+        },
+        "console_n64": {
+          "type": "console",
+          "settings": {
+            "name": "Nintendo 64",
+            "highlight": false
+          }
+        },
+        "console_neo_geo": {
+          "type": "console",
+          "settings": {
+            "name": "Neo Geo",
+            "highlight": true
+          }
+        },
+        "console_atari": {
+          "type": "console",
+          "settings": {
+            "name": "Atari 2600",
+            "highlight": true
+          }
+        },
+        "console_pc_engine": {
+          "type": "console",
+          "settings": {
+            "name": "PC Engine",
+            "highlight": true
+          }
+        },
+        "stat_games": {
+          "type": "stat",
+          "settings": {
+            "value": "20 000",
+            "label": "juegos preinstalados"
+          }
+        },
+        "stat_storage": {
+          "type": "stat",
+          "settings": {
+            "value": "64 GB",
+            "label": "tarjeta incluida"
+          }
+        },
+        "stat_weight": {
+          "type": "stat",
+          "settings": {
+            "value": "190 g",
+            "label": "peso con bateria"
+          }
+        }
+      },
+      "block_order": [
+        "console_NES",
+        "console_game_boy",
+        "console_gba",
+        "console_mega_drive",
+        "console_snes",
+        "console_mame",
+        "console_cps",
+        "console_playstation",
+        "console_psp",
+        "console_ds",
+        "console_n64",
+        "console_neo_geo",
+        "console_atari",
+        "console_pc_engine",
+        "stat_games",
+        "stat_storage",
+        "stat_weight"
+      ],
+      "name": "Descripcion de consolas",
+      "settings": {
+        "heading": "Once consolas, una sola caja",
+        "text": "<p>Cada emulador llega instalado y probado. Los juegos ya estan dentro, ordenados por sistema.</p>",
+        "console_list_label": "Consolas emuladas",
+        "image": "shopify://shop_images/consola1_sin_fondo.png",
+        "caption": "Azul y gris translucidos",
+        "section_width": "full-width",
+        "image_position": "right",
+        "image_width": 34,
+        "column_gap": 96,
+        "background_color": "#1b1533",
+        "surface_color": "#0F102000",
+        "heading_color": "#f1eefa",
+        "text_color": "#f1eefa",
+        "muted_color": "#9b92b8",
+        "accent_color": "#a99bff",
+        "chip_background_color": "#1B153300",
+        "chip_active_background_color": "#4D437A",
+        "divider_color": "#4CC9F033",
+        "heading_size": 48,
+        "heading_size_mobile": 38,
+        "text_size": 18,
+        "chip_text_size": 15,
+        "stat_value_size": 36,
+        "image_border_radius": 8,
+        "image_border_width": 6,
+        "image_border_color": "#f1eefa",
+        "padding-block-start": 64,
+        "padding-block-end": 64
+      }
     }
   },
   "order": [
     "media_with_content_9ycMNx",
-    "marquee_DAQMWA"
+    "marquee_DAQMWA",
+    "console_description_8Kqf3L"
   ]
 }
