@@ -614,10 +614,57 @@
         "padding-block-end": 25,
         "gap_between_elements": 24
       }
+    },
+    "retro_feature_columns_czVqpj": {
+      "type": "retro-feature-columns",
+      "blocks": {
+        "feature_MjEEzi": {
+          "type": "feature",
+          "settings": {
+            "label": "PANTALLA",
+            "heading": "720x720",
+            "text": "<p>IPS de 4 pulgadas laminada en optica. Los pixeles de 1990 se ven como se veian: cuadrados y limpios.</p>"
+          }
+        },
+        "feature_McJmA4": {
+          "type": "feature",
+          "settings": {
+            "label": "BATERIA",
+            "heading": "8 horas",
+            "text": "<p>3000 mAh y extraible: se cambia sin herramientas y se ve la carga por fuera.</p>"
+          }
+        },
+        "feature_CQAjyQ": {
+          "type": "feature",
+          "settings": {
+            "label": "MANDOS",
+            "heading": "2 · RGB",
+            "text": "<p>Joysticks 3D con anillo de siete colores, gatillos mecanicos y cruceta de verdad.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "feature_MjEEzi",
+        "feature_McJmA4",
+        "feature_CQAjyQ"
+      ],
+      "name": "Caracteristicas retro",
+      "settings": {
+        "section_width": "full-width",
+        "background_color": "#161330",
+        "surface_color": "#151827",
+        "border_color": "#4CC9F033",
+        "label_color": "#9B92B8",
+        "heading_color": "#F1EEFA",
+        "text_color": "#C9C4D8",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
     }
   },
   "order": [
     "media_with_content_9ycMNx",
-    "marquee_DAQMWA"
+    "marquee_DAQMWA",
+    "retro_feature_columns_czVqpj"
   ]
 }
