@@ -809,7 +809,7 @@
         "text": "<p>Cada emulador llega instalado y probado. Los juegos ya estan dentro, ordenados por sistema.</p>",
         "console_list_label": "Consolas emuladas",
         "image": "shopify://shop_images/emuladores.png",
-        "caption": "Azul y gris translucidos",
+        "caption": "",
         "section_width": "page-width",
         "image_position": "right",
         "image_width": 38,
