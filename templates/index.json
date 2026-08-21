@@ -840,6 +840,65 @@
         "padding-block-end": 64
       }
     },
+    "box_contents_aneE9j": {
+      "type": "box-contents",
+      "blocks": {
+        "item_BRXJQk": {
+          "type": "item",
+          "settings": {
+            "title": "Consola R36 Ultra",
+            "text": "<p>Con bateria de 3 000 mAh puesta</p>"
+          }
+        },
+        "item_h4nrrN": {
+          "type": "item",
+          "settings": {
+            "title": "microSD de 64 GB",
+            "text": "<p>Cargada y ordenada por consola</p>"
+          }
+        },
+        "item_kQ7jnd": {
+          "type": "item",
+          "settings": {
+            "title": "Cable USB-C",
+            "text": "<p>Carga completa en 2 h</p>"
+          }
+        },
+        "item_mNYATQ": {
+          "type": "item",
+          "settings": {
+            "title": "Guia en espanol",
+            "text": "<p>Una hoja. No hace falta mas</p>"
+          }
+        }
+      },
+      "block_order": [
+        "item_BRXJQk",
+        "item_h4nrrN",
+        "item_kQ7jnd",
+        "item_mNYATQ"
+      ],
+      "name": "En la caja",
+      "settings": {
+        "heading": "En la caja",
+        "section_width": "page-width",
+        "background_color": "#161330",
+        "heading_color": "#F1EEFA",
+        "item_title_color": "#F1EEFA",
+        "item_text_color": "#9B92B8",
+        "card_background_color": "#241C4000",
+        "card_border_color": "#9B92B859",
+        "heading_size": 46,
+        "item_title_size": 19,
+        "item_text_size": 15,
+        "column_gap": 12,
+        "card_padding": 20,
+        "card_border_width": 1,
+        "card_border_radius": 6,
+        "padding-block-start": 56,
+        "padding-block-end": 56
+      }
+    },
     "warranty_cta_V9mQp2": {
       "type": "warranty-cta",
       "name": "Garantia y compra",
@@ -871,6 +930,7 @@
     "marquee_DAQMWA",
     "retro_feature_columns_czVqpj",
     "console_description_8Kqf3L",
+    "box_contents_aneE9j",
     "warranty_cta_V9mQp2"
   ]
 }
