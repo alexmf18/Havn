@@ -1023,7 +1023,7 @@
         "question_size": 17,
         "column_gap": 56,
         "padding-block-start": 56,
-        "padding-block-end": 56
+        "padding-block-end": 32
       }
     }
   },
