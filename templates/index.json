@@ -102,7 +102,7 @@
               "type": "button",
               "settings": {
                 "label": "Comprar ahora",
-                "link": "shopify://collections/all",
+                "link": "shopify://products/consola-retro-portatil-r36-ultra-pantalla-ips-hd-de-4-doble-joystick-y-miles-de-juegos",
                 "open_in_new_tab": false,
                 "style_class": "button-custom",
                 "custom_button_background": "rgba(0,0,0,0)",
@@ -906,7 +906,7 @@
         "heading": "Garantia de 2 años y 30 dias para pensarlo",
         "text": "<p>Si no encaja, la recogemos en tu casa y te devolvemos el importe completo. Sin preguntas y sin coste.</p>",
         "button_label": "comprar",
-        "button_link": "shopify://collections/all",
+        "button_link": "shopify://products/consola-retro-portatil-r36-ultra-pantalla-ips-hd-de-4-doble-joystick-y-miles-de-juegos",
         "open_in_new_tab": false,
         "section_width": "full-width",
         "background_color": "#161330",
