@@ -908,7 +908,7 @@
         "button_label": "comprar",
         "button_link": "shopify://collections/all",
         "open_in_new_tab": false,
-        "section_width": "page-width",
+        "section_width": "full-width",
         "background_color": "#161330",
         "panel_color": "#161330",
         "border_color": "#4CC9F033",
