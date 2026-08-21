@@ -64,7 +64,7 @@
         "section_width": "full-width",
         "gap": 24,
         "background_color": "#1B1533",
-        "divider_thickness": 1,
+        "divider_thickness": 0,
         "divider_color": "",
         "padding-block-start": 20,
         "padding-block-end": 20
