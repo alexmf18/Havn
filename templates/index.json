@@ -105,7 +105,7 @@
                 "link": "shopify://products/consola-retro-portatil-r36-ultra-pantalla-ips-hd-de-4-doble-joystick-y-miles-de-juegos",
                 "open_in_new_tab": false,
                 "style_class": "button-custom",
-                "custom_button_background": "rgba(0,0,0,0)",
+                "custom_button_background": "#FF7A45",
                 "custom_button_text": "{{ settings.color_palette.foreground }}",
                 "custom_button_border": "{{ settings.color_palette.foreground }}",
                 "link_text_color": "",
