@@ -829,7 +829,7 @@
         "chip_text_size": 15,
         "stat_value_size": 36,
         "image_fit": "contain",
-        "image_ratio": "4 / 3",
+        "image_ratio": "4 / 5",
         "image_max_height": 500,
         "image_resolution": "1600",
         "image_background_color": "rgba(0,0,0,0)",
