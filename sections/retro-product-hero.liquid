@@ -1,0 +1,861 @@
+{% liquid
+  assign current_variant = product.selected_or_first_available_variant
+  assign media_items = product.media
+  assign hero_image_width = section.settings.image_resolution | plus: 0
+  assign product_kicker = section.settings.kicker
+  assign visible_media_count = media_items.size | at_most: section.settings.media_limit
+
+  if visible_media_count == 0 and product.featured_image != blank
+    assign visible_media_count = 1
+  endif
+
+  if product_kicker == blank and product.vendor != blank
+    assign product_kicker = product.vendor
+  endif
+
+  if section.settings.background_color != blank
+    render 'contrast-override', background_color: section.settings.background_color, section_id: section.id
+  endif
+%}
+
+<div
+  class="section-background{% if section.settings.background_color != blank %} color-custom-{{ section.id }}{% endif %}"
+></div>
+
+<section
+  class="retro-product-hero section section--{{ section.settings.section_width }} spacing-style retro-product-hero--media-{{ section.settings.media_position }}{% if section.settings.background_color != blank %} color-custom-{{ section.id }}{% endif %}"
+  style="
+    {% render 'spacing-style', settings: section.settings %}
+    --retro-product-surface: {{ section.settings.surface_color }};
+    --retro-product-text: {{ section.settings.text_color }};
+    --retro-product-muted: {{ section.settings.muted_color }};
+    --retro-product-heading: {{ section.settings.heading_color }};
+    --retro-product-accent: {{ section.settings.accent_color }};
+    --retro-product-secondary: {{ section.settings.secondary_accent_color }};
+    --retro-product-button-bg: {{ section.settings.button_background_color }};
+    --retro-product-button-text: {{ section.settings.button_text_color }};
+    --retro-product-button-border: {{ section.settings.button_border_color }};
+    --retro-product-border: {{ section.settings.border_color }};
+    --retro-product-heading-size: {{ section.settings.heading_size }}px;
+    --retro-product-heading-mobile: {{ section.settings.heading_size_mobile }}px;
+    --retro-product-text-size: {{ section.settings.text_size }}px;
+    --retro-product-price-size: {{ section.settings.price_size }}px;
+    --retro-product-media-width: {{ section.settings.media_width }}%;
+    --retro-product-image-ratio: {{ section.settings.image_ratio }};
+    --retro-product-image-fit: {{ section.settings.image_fit }};
+    --retro-product-image-radius: {{ section.settings.image_border_radius }}px;
+    --retro-product-gap: {{ section.settings.column_gap }}px;
+  "
+>
+  <div class="retro-product-hero__inner">
+    <div class="retro-product-hero__media">
+      <div class="retro-product-hero__screen retro-product-hero__screen--count-{{ visible_media_count }}">
+        {%- if media_items.size > 0 -%}
+        {%- for media in media_items limit: section.settings.media_limit -%}
+          {%- if media.preview_image != blank -%}
+            {% liquid
+              assign image_loading = 'lazy'
+              if forloop.first
+                assign image_loading = 'eager'
+              endif
+            %}
+            <figure class="retro-product-hero__frame{% if forloop.first %} retro-product-hero__frame--primary{% endif %}">
+              {{
+                media.preview_image
+                | image_url: width: hero_image_width
+                  | image_tag:
+                    widths: '360, 533, 720, 900, 1200, 1600, 2048',
+                    sizes: '(min-width: 990px) 50vw, 100vw',
+                    alt: media.alt,
+                    loading: image_loading,
+                    class: 'retro-product-hero__image'
+              }}
+            </figure>
+            {%- endif -%}
+          {%- endfor -%}
+        {%- elsif product.featured_image != blank -%}
+          <figure class="retro-product-hero__frame retro-product-hero__frame--primary">
+            {{
+              product.featured_image
+              | image_url: width: hero_image_width
+              | image_tag:
+                widths: '360, 533, 720, 900, 1200, 1600, 2048',
+                sizes: '(min-width: 990px) 50vw, 100vw',
+                alt: product.featured_image.alt,
+                loading: 'eager',
+                class: 'retro-product-hero__image'
+            }}
+          </figure>
+        {%- else -%}
+          <figure class="retro-product-hero__frame retro-product-hero__frame--primary">
+            {{ 'product-1' | placeholder_svg_tag: 'retro-product-hero__image retro-product-hero__placeholder' }}
+          </figure>
+        {%- endif -%}
+      </div>
+    </div>
+
+    <div class="retro-product-hero__content">
+      {%- if product_kicker != blank -%}
+        <p class="retro-product-hero__kicker">{{ product_kicker | escape }}</p>
+      {%- endif -%}
+
+      <h1 class="retro-product-hero__heading">{{ product.title | escape }}</h1>
+
+      <div class="retro-product-hero__meta">
+        <span class="retro-product-hero__price">
+          {{ current_variant.price | money }}
+        </span>
+
+        {%- if current_variant.compare_at_price > current_variant.price -%}
+          <span class="retro-product-hero__compare">
+            {{ current_variant.compare_at_price | money }}
+          </span>
+        {%- endif -%}
+
+        {%- if product.available -%}
+          <span class="retro-product-hero__stock">{{ section.settings.stock_label | escape }}</span>
+        {%- else -%}
+          <span class="retro-product-hero__stock retro-product-hero__stock--sold">{{ section.settings.sold_out_label | escape }}</span>
+        {%- endif -%}
+      </div>
+
+      {%- if section.settings.show_description and product.description != blank -%}
+        <div class="retro-product-hero__description">
+          {{ product.description | strip_html | truncatewords: section.settings.description_words }}
+        </div>
+      {%- endif -%}
+
+      {%- if section.blocks.size > 0 -%}
+        <div class="retro-product-hero__chips" aria-label="{{ section.settings.badges_label | escape }}">
+          {%- for block in section.blocks -%}
+            <span class="retro-product-hero__chip" {{ block.shopify_attributes }}>
+              {{ block.settings.text | escape }}
+            </span>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+
+      {%- form 'product', product, class: 'retro-product-hero__form' -%}
+        <input type="hidden" name="id" value="{{ current_variant.id }}">
+
+        {%- if section.settings.show_quantity -%}
+          <label class="retro-product-hero__quantity">
+            <span>{{ section.settings.quantity_label | escape }}</span>
+            <input
+              type="number"
+              name="quantity"
+              value="1"
+              min="1"
+              {% if current_variant.inventory_management and current_variant.inventory_policy == 'deny' %}
+                max="{{ current_variant.inventory_quantity }}"
+              {% endif %}
+            >
+          </label>
+        {%- endif -%}
+
+        <button
+          class="retro-product-hero__button"
+          type="submit"
+          {% unless product.available %}
+            disabled
+          {% endunless %}
+        >
+          {%- if product.available -%}
+            {{ section.settings.button_label | escape }}
+          {%- else -%}
+            {{ section.settings.sold_out_button_label | escape }}
+          {%- endif -%}
+        </button>
+      {%- endform -%}
+
+      {%- if section.settings.note != blank -%}
+        <div class="retro-product-hero__note">
+          {{ section.settings.note }}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .retro-product-hero {
+    background: var(--color-background, transparent);
+    color: var(--retro-product-text, #f1eefa);
+  }
+
+  .retro-product-hero__inner {
+    display: grid;
+    grid-template-columns: minmax(280px, var(--retro-product-media-width)) minmax(0, 1fr);
+    grid-template-areas: 'media content';
+    gap: var(--retro-product-gap);
+    align-items: center;
+    min-height: 68svh;
+  }
+
+  .retro-product-hero--media-right .retro-product-hero__inner {
+    grid-template-columns: minmax(0, 1fr) minmax(280px, var(--retro-product-media-width));
+    grid-template-areas: 'content media';
+  }
+
+  .retro-product-hero__media,
+  .retro-product-hero__content {
+    min-width: 0;
+  }
+
+  .retro-product-hero__media {
+    grid-area: media;
+  }
+
+  .retro-product-hero__content {
+    grid-area: content;
+    max-width: 62rem;
+  }
+
+  .retro-product-hero__screen {
+    display: grid;
+    grid-template-columns: 1fr 0.42fr;
+    gap: 1.2rem;
+    padding: 1.2rem;
+    border: 1px solid var(--retro-product-border, rgb(76 201 240 / 22%));
+    border-radius: 0.8rem;
+    background:
+      linear-gradient(90deg, rgb(76 201 240 / 9%) 1px, transparent 1px),
+      linear-gradient(rgb(76 201 240 / 9%) 1px, transparent 1px),
+      var(--retro-product-surface, #241c40);
+    background-size: 28px 28px;
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / 5%);
+  }
+
+  .retro-product-hero__screen--count-1 {
+    grid-template-columns: 1fr;
+  }
+
+  .retro-product-hero__frame {
+    margin: 0;
+    min-width: 0;
+    border: 1px solid rgb(241 238 250 / 14%);
+    border-radius: var(--retro-product-image-radius);
+    background: rgb(8 7 16 / 42%);
+    overflow: hidden;
+    position: relative;
+  }
+
+  .retro-product-hero__frame::after {
+    content: '';
+    position: absolute;
+    inset-block-start: 0;
+    inset-inline-start: 0;
+    width: 4rem;
+    height: 0.3rem;
+    background: var(--retro-product-secondary, #b4ff39);
+  }
+
+  .retro-product-hero__frame--primary {
+    grid-row: span 2;
+  }
+
+  .retro-product-hero__image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: var(--retro-product-image-ratio);
+    object-fit: var(--retro-product-image-fit);
+  }
+
+  .retro-product-hero__placeholder {
+    background: rgb(255 255 255 / 4%);
+  }
+
+  .retro-product-hero__kicker {
+    display: inline-flex;
+    gap: 0.8rem;
+    align-items: center;
+    margin: 0 0 1.4rem;
+    color: var(--retro-product-accent, #4cc9f0);
+    font-family: var(--font-accent--family);
+    font-size: 1.3rem;
+    font-style: var(--font-accent--style);
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    line-height: 1.2;
+    text-transform: uppercase;
+  }
+
+  .retro-product-hero__kicker::before {
+    content: '';
+    width: 0.8rem;
+    height: 0.8rem;
+    border-radius: 50%;
+    background: var(--retro-product-secondary, #b4ff39);
+    box-shadow: 0 0 1.4rem rgb(180 255 57 / 60%);
+  }
+
+  .retro-product-hero__heading {
+    margin: 0;
+    color: var(--retro-product-heading, #f1eefa);
+    font-family: var(--font-primary--family);
+    font-size: var(--retro-product-heading-size);
+    font-style: var(--font-primary--style);
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: 0.98;
+    overflow-wrap: anywhere;
+  }
+
+  .retro-product-hero__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+    margin-block-start: 2.2rem;
+  }
+
+  .retro-product-hero__price {
+    color: var(--retro-product-heading, #f1eefa);
+    font-family: var(--font-accent--family);
+    font-size: var(--retro-product-price-size);
+    font-style: var(--font-accent--style);
+    font-weight: 800;
+    line-height: 1;
+  }
+
+  .retro-product-hero__compare {
+    color: var(--retro-product-muted, #9b92b8);
+    font-family: var(--font-accent--family);
+    font-size: 1.7rem;
+    text-decoration: line-through;
+  }
+
+  .retro-product-hero__stock,
+  .retro-product-hero__chip {
+    display: inline-flex;
+    align-items: center;
+    min-height: 3.2rem;
+    padding: 0.5rem 1.1rem;
+    border: 1px solid var(--retro-product-border, rgb(76 201 240 / 28%));
+    border-radius: 0.6rem;
+    color: var(--retro-product-accent, #4cc9f0);
+    font-family: var(--font-accent--family);
+    font-size: 1.3rem;
+    font-style: var(--font-accent--style);
+    font-weight: 700;
+    line-height: 1.1;
+  }
+
+  .retro-product-hero__stock--sold {
+    color: var(--retro-product-muted, #9b92b8);
+  }
+
+  .retro-product-hero__description {
+    max-width: 55rem;
+    margin-block-start: 2rem;
+    color: var(--retro-product-muted, #9b92b8);
+    font-family: var(--font-body--family);
+    font-size: var(--retro-product-text-size);
+    line-height: 1.55;
+  }
+
+  .retro-product-hero__chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    margin-block-start: 2.4rem;
+  }
+
+  .retro-product-hero__chip {
+    color: var(--retro-product-heading, #f1eefa);
+    background: rgb(36 28 64 / 72%);
+  }
+
+  .retro-product-hero__form {
+    display: grid;
+    grid-template-columns: auto minmax(18rem, 1fr);
+    gap: 1.2rem;
+    align-items: end;
+    max-width: 52rem;
+    margin-block-start: 3rem;
+  }
+
+  .retro-product-hero__quantity {
+    display: grid;
+    gap: 0.6rem;
+    color: var(--retro-product-muted, #9b92b8);
+    font-family: var(--font-accent--family);
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .retro-product-hero__quantity input {
+    width: 8.6rem;
+    min-height: 4.8rem;
+    padding: 0.8rem 1rem;
+    border: 1px solid var(--retro-product-border, rgb(76 201 240 / 35%));
+    border-radius: 0.6rem;
+    background: transparent;
+    color: var(--retro-product-heading, #f1eefa);
+    font: inherit;
+    letter-spacing: 0;
+  }
+
+  .retro-product-hero__button {
+    min-height: 4.8rem;
+    padding: 1rem 2.2rem;
+    border: 1px solid var(--retro-product-button-border, #ff7a45);
+    border-radius: 0.6rem;
+    background: var(--retro-product-button-bg, #ff7a45);
+    color: var(--retro-product-button-text, #1b1533);
+    cursor: pointer;
+    font-family: var(--font-accent--family);
+    font-size: 1.5rem;
+    font-style: var(--font-accent--style);
+    font-weight: 800;
+    line-height: 1.2;
+    transition:
+      transform 160ms ease,
+      opacity 160ms ease;
+  }
+
+  .retro-product-hero__button:hover {
+    opacity: 0.94;
+    transform: translateY(-1px);
+  }
+
+  .retro-product-hero__button:disabled {
+    cursor: not-allowed;
+    opacity: 0.55;
+    transform: none;
+  }
+
+  .retro-product-hero__button:focus-visible,
+  .retro-product-hero__quantity input:focus-visible {
+    outline: 2px solid var(--retro-product-accent, #4cc9f0);
+    outline-offset: 3px;
+  }
+
+  .retro-product-hero__note {
+    max-width: 48rem;
+    margin-block-start: 1.6rem;
+    color: var(--retro-product-muted, #9b92b8);
+    font-size: 1.4rem;
+    line-height: 1.4;
+  }
+
+  .retro-product-hero__note > * {
+    margin: 0;
+  }
+
+  @media screen and (max-width: 989px) {
+    .retro-product-hero__inner,
+    .retro-product-hero--media-right .retro-product-hero__inner {
+      grid-template-columns: 1fr;
+      grid-template-areas: 'media' 'content';
+      gap: 3.2rem;
+      min-height: 0;
+    }
+
+    .retro-product-hero__heading {
+      font-size: var(--retro-product-heading-mobile);
+    }
+  }
+
+  @media screen and (max-width: 649px) {
+    .retro-product-hero__screen {
+      grid-template-columns: 1fr;
+      padding: 0.8rem;
+    }
+
+    .retro-product-hero__frame:not(.retro-product-hero__frame--primary) {
+      display: none;
+    }
+
+    .retro-product-hero__description {
+      font-size: min(var(--retro-product-text-size), 1.6rem);
+    }
+
+    .retro-product-hero__form {
+      grid-template-columns: 1fr;
+    }
+
+    .retro-product-hero__quantity input,
+    .retro-product-hero__button {
+      width: 100%;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Producto retro",
+  "enabled_on": {
+    "templates": ["product"]
+  },
+  "blocks": [
+    {
+      "type": "badge",
+      "name": "Etiqueta tecnica",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Texto",
+          "default": "720x720 IPS"
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "Etiqueta superior",
+      "default": "Consola retro portatil"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_description",
+      "label": "Mostrar descripcion del producto",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "description_words",
+      "min": 12,
+      "max": 70,
+      "step": 2,
+      "label": "Palabras de descripcion",
+      "default": 32
+    },
+    {
+      "type": "text",
+      "id": "badges_label",
+      "label": "Etiqueta accesible de chips",
+      "default": "Caracteristicas clave"
+    },
+    {
+      "type": "text",
+      "id": "stock_label",
+      "label": "Texto en stock",
+      "default": "En stock"
+    },
+    {
+      "type": "text",
+      "id": "sold_out_label",
+      "label": "Texto agotado",
+      "default": "Agotado"
+    },
+    {
+      "type": "text",
+      "id": "quantity_label",
+      "label": "Etiqueta cantidad",
+      "default": "Cantidad"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_quantity",
+      "label": "Mostrar cantidad",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Texto del boton",
+      "default": "Anadir al carrito"
+    },
+    {
+      "type": "text",
+      "id": "sold_out_button_label",
+      "label": "Texto del boton agotado",
+      "default": "Sin stock"
+    },
+    {
+      "type": "richtext",
+      "id": "note",
+      "label": "Nota bajo el boton",
+      "default": "<p>Envio 24-48 h desde Valencia. Garantia de 2 anos y devolucion durante 30 dias.</p>"
+    },
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "Ancho",
+      "options": [
+        {
+          "value": "page-width",
+          "label": "Pagina"
+        },
+        {
+          "value": "full-width",
+          "label": "Completo"
+        }
+      ],
+      "default": "page-width"
+    },
+    {
+      "type": "select",
+      "id": "media_position",
+      "label": "Posicion de imagen",
+      "options": [
+        {
+          "value": "left",
+          "label": "Izquierda"
+        },
+        {
+          "value": "right",
+          "label": "Derecha"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "range",
+      "id": "media_width",
+      "min": 35,
+      "max": 60,
+      "step": 1,
+      "unit": "%",
+      "label": "Ancho de imagen",
+      "default": 52
+    },
+    {
+      "type": "range",
+      "id": "media_limit",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "label": "Imagenes visibles",
+      "default": 3
+    },
+    {
+      "type": "select",
+      "id": "image_fit",
+      "label": "Ajuste de imagen",
+      "options": [
+        {
+          "value": "contain",
+          "label": "Completa"
+        },
+        {
+          "value": "cover",
+          "label": "Cubrir"
+        }
+      ],
+      "default": "contain"
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "label": "Formato de imagen",
+      "options": [
+        {
+          "value": "1 / 1",
+          "label": "Cuadrado"
+        },
+        {
+          "value": "4 / 5",
+          "label": "Vertical"
+        },
+        {
+          "value": "16 / 10",
+          "label": "Horizontal"
+        },
+        {
+          "value": "auto",
+          "label": "Original"
+        }
+      ],
+      "default": "1 / 1"
+    },
+    {
+      "type": "range",
+      "id": "image_resolution",
+      "min": 720,
+      "max": 2400,
+      "step": 120,
+      "unit": "px",
+      "label": "Resolucion de imagen",
+      "default": 1600
+    },
+    {
+      "type": "range",
+      "id": "image_border_radius",
+      "min": 0,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Radio de imagen",
+      "default": 8
+    },
+    {
+      "type": "header",
+      "content": "Colores"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Color de fondo",
+      "default": "#1B1533"
+    },
+    {
+      "type": "color",
+      "id": "surface_color",
+      "label": "Color de superficie",
+      "default": "#241C40"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Color de borde",
+      "alpha": true,
+      "default": "#4CC9F033"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Color de titulo",
+      "default": "#F1EEFA"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Color de texto",
+      "default": "#F1EEFA"
+    },
+    {
+      "type": "color",
+      "id": "muted_color",
+      "label": "Color de texto secundario",
+      "default": "#9B92B8"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Acento cian",
+      "default": "#4CC9F0"
+    },
+    {
+      "type": "color",
+      "id": "secondary_accent_color",
+      "label": "Acento lima",
+      "default": "#B4FF39"
+    },
+    {
+      "type": "color",
+      "id": "button_background_color",
+      "label": "Fondo del boton",
+      "default": "#FF7A45"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Texto del boton",
+      "default": "#1B1533"
+    },
+    {
+      "type": "color",
+      "id": "button_border_color",
+      "label": "Borde del boton",
+      "default": "#FF7A45"
+    },
+    {
+      "type": "header",
+      "content": "Tipografia y espaciado"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "min": 38,
+      "max": 92,
+      "step": 2,
+      "unit": "px",
+      "label": "Tamano titulo escritorio",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "heading_size_mobile",
+      "min": 30,
+      "max": 56,
+      "step": 2,
+      "unit": "px",
+      "label": "Tamano titulo movil",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "price_size",
+      "min": 24,
+      "max": 58,
+      "step": 2,
+      "unit": "px",
+      "label": "Tamano precio",
+      "default": 38
+    },
+    {
+      "type": "range",
+      "id": "text_size",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Tamano texto",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "column_gap",
+      "min": 24,
+      "max": 96,
+      "step": 4,
+      "unit": "px",
+      "label": "Separacion entre columnas",
+      "default": 56
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Relleno superior",
+      "default": 56
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Relleno inferior",
+      "default": 48
+    }
+  ],
+  "presets": [
+    {
+      "name": "Producto retro",
+      "blocks": [
+        {
+          "type": "badge",
+          "settings": {
+            "text": "720x720 IPS"
+          }
+        },
+        {
+          "type": "badge",
+          "settings": {
+            "text": "3 000 mAh"
+          }
+        },
+        {
+          "type": "badge",
+          "settings": {
+            "text": "64 GB incluidos"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

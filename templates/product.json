@@ -1,1157 +1,419 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */{
+{
   "sections": {
-    "main": {
-      "type": "product-information",
+    "retro_product_hero_product": {
+      "type": "retro-product-hero",
       "blocks": {
-        "disclosures_3Uh8eA": {
-          "type": "disclosures",
-          "name": "t:names.disclosures",
+        "badge_screen": {
+          "type": "badge",
           "settings": {
-            "heading": "Disclosures",
-            "heading_preset": "h5",
-            "open_by_default": false,
-            "icon": "caret",
-            "disclosure_heading_preset": "paragraph",
-            "text_color": "",
-            "dividers": true,
-            "divider_color": "{{ settings.color_palette.color4 }}",
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
+            "text": "720x720 IPS"
+          }
         },
-        "media-gallery": {
-          "type": "_product-media-gallery",
-          "static": true,
+        "badge_battery": {
+          "type": "badge",
           "settings": {
-            "media_presentation": "grid",
-            "media_columns": "two",
-            "image_gap": 12,
-            "large_first_image": true,
-            "icons_style": "chevron",
-            "slideshow_controls_style": "dots",
-            "slideshow_mobile_controls_style": "dots",
-            "thumbnail_position": "bottom",
-            "thumbnail_width": 44,
-            "thumbnail_radius": 0,
-            "aspect_ratio": "1",
-            "constrain_to_viewport": true,
-            "media_fit": "cover",
-            "media_radius": 20,
-            "extend_media": false,
-            "zoom": true,
-            "video_loop": false,
-            "hide_variants": false,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
+            "text": "3 000 mAh"
+          }
         },
-        "product-details": {
-          "type": "_product-details",
-          "static": true,
+        "badge_storage": {
+          "type": "badge",
           "settings": {
-            "width": "fill",
-            "custom_width": 100,
-            "width_mobile": "fill",
-            "custom_width_mobile": 100,
-            "height": "fit",
-            "details_position": "flex-start",
-            "gap": 16,
-            "sticky_details_desktop": true,
-            "background_media": "none",
-            "background_color": "",
-            "video_position": "cover",
-            "background_image_position": "cover",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_color": "",
-            "border_radius": 0,
-            "padding-block-start": 32,
-            "padding-block-end": 16,
-            "padding-inline-start": 12,
-            "padding-inline-end": 12
-          },
-          "blocks": {
-            "text_GnyQiN": {
-              "type": "text",
-              "name": "t:names.title",
-              "settings": {
-                "text": "<h1>{{ closest.product.title }}</h1>",
-                "width": "fit-content",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "h2",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "text_color": "",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "reviews": {
-              "type": "review",
-              "settings": {
-                "stars_style": "shaded",
-                "show_number": true,
-                "text_color": "",
-                "type_preset": "paragraph",
-                "width": "100%",
-                "alignment": "left"
-              },
-              "blocks": {}
-            },
-            "price_a7krng": {
-              "type": "price",
-              "settings": {
-                "show_sale_price_first": true,
-                "show_installments": true,
-                "show_tax_info": true,
-                "type_preset": "h4",
-                "width": "100%",
-                "alignment": "left",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "text_color": "",
-                "padding-block-start": 0,
-                "padding-block-end": 17,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "variant_picker_R3rGDr": {
-              "type": "variant-picker",
-              "settings": {
-                "variant_style": "buttons",
-                "show_swatches": true,
-                "option_label_text_color": "",
-                "variant_style_class": "default",
-                "custom_variant_background": "{{ settings.color_palette.background }}",
-                "custom_variant_text": "{{ settings.color_palette.foreground }}",
-                "custom_variant_border": "{{ settings.color_palette.foreground }}",
-                "selected_variant_style_class": "default",
-                "custom_selected_variant_background": "{{ settings.color_palette.foreground }}",
-                "custom_selected_variant_text": "{{ settings.color_palette.background }}",
-                "custom_selected_variant_border": "{{ settings.color_palette.foreground }}",
-                "alignment": "left",
-                "padding-block-start": 12,
-                "padding-block-end": 12,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "buy_buttons_eYQEYi": {
-              "type": "buy-buttons",
-              "settings": {
-                "stacking": false,
-                "text_color": "",
-                "show_pickup_availability": false,
-                "gift_card_form": true,
-                "recipient_button_style": "default",
-                "recipient_button_background": "{{ settings.color_palette.background }}",
-                "recipient_button_text": "{{ settings.color_palette.foreground }}",
-                "recipient_button_border": "{{ settings.color_palette.foreground }}",
-                "selected_recipient_button_style": "default",
-                "selected_recipient_button_background": "{{ settings.color_palette.foreground }}",
-                "selected_recipient_button_text": "{{ settings.color_palette.background }}",
-                "selected_recipient_button_border": "{{ settings.color_palette.foreground }}",
-                "input_style": "default",
-                "input_background_color": "{{ settings.color_palette.background }}",
-                "input_text_color": "{{ settings.color_palette.foreground }}",
-                "input_border_color": "{{ settings.color_palette.foreground }}",
-                "border_width": 1,
-                "border_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {
-                "quantity": {
-                  "type": "quantity",
-                  "static": true,
-                  "settings": {
-                    "input_style": "default",
-                    "input_background_color": "{{ settings.color_palette.background }}",
-                    "input_text_color": "{{ settings.color_palette.foreground }}",
-                    "input_border_color": "{{ settings.color_palette.foreground }}",
-                    "border_width": 1,
-                    "border_radius": 0
-                  },
-                  "blocks": {}
-                },
-                "add-to-cart": {
-                  "type": "add-to-cart",
-                  "static": true,
-                  "settings": {
-                    "style_class": "button",
-                    "custom_button_background": "{{ settings.color_palette.foreground }}",
-                    "custom_button_text": "{{ settings.color_palette.background }}",
-                    "custom_button_border": "{{ settings.color_palette.background }}"
-                  },
-                  "blocks": {}
-                },
-                "accelerated-checkout": {
-                  "type": "accelerated-checkout",
-                  "static": true,
-                  "settings": {},
-                  "blocks": {}
-                }
-              },
-              "block_order": []
-            },
-            "product_description_LfDYCg": {
-              "type": "product-description",
-              "name": "t:names.product_description",
-              "settings": {
-                "text": "{{ closest.product.description }}",
-                "width": "fit-content",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "rte",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "text_color": "",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "group_X39hBc": {
-              "type": "group",
-              "name": "t:names.group",
-              "settings": {
-                "content_direction": "column",
-                "vertical_on_mobile": true,
-                "horizontal_alignment": "flex-start",
-                "vertical_alignment": "center",
-                "align_baseline": false,
-                "horizontal_alignment_flex_direction_column": "flex-start",
-                "vertical_alignment_flex_direction_column": "center",
-                "gap": 12,
-                "width": "fill",
-                "custom_width": 100,
-                "width_mobile": "fill",
-                "custom_width_mobile": 100,
-                "height": "fit",
-                "custom_height": 100,
-                "background_media": "none",
-                "background_color": "",
-                "video_position": "cover",
-                "background_image_position": "cover",
-                "toggle_overlay": false,
-                "overlay_color": "#00000026",
-                "overlay_style": "solid",
-                "gradient_direction": "to top",
-                "border": "none",
-                "border_width": 1,
-                "border_opacity": 100,
-                "border_color": "",
-                "border_radius": 0,
-                "open_in_new_tab": false,
-                "placeholder": "",
-                "padding-block-start": 8,
-                "padding-block-end": 16,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {
-                "group_XqRYxC": {
-                  "type": "group",
-                  "name": "t:names.row",
-                  "settings": {
-                    "content_direction": "row",
-                    "vertical_on_mobile": false,
-                    "horizontal_alignment": "flex-start",
-                    "vertical_alignment": "center",
-                    "align_baseline": false,
-                    "horizontal_alignment_flex_direction_column": "flex-start",
-                    "vertical_alignment_flex_direction_column": "center",
-                    "gap": 12,
-                    "width": "fill",
-                    "custom_width": 100,
-                    "width_mobile": "fill",
-                    "custom_width_mobile": 100,
-                    "height": "fit",
-                    "custom_height": 100,
-                    "background_media": "none",
-                    "background_color": "",
-                    "video_position": "cover",
-                    "background_image_position": "cover",
-                    "toggle_overlay": false,
-                    "overlay_color": "#00000026",
-                    "overlay_style": "solid",
-                    "gradient_direction": "to top",
-                    "border": "none",
-                    "border_width": 1,
-                    "border_opacity": 100,
-                    "border_color": "",
-                    "border_radius": 0,
-                    "open_in_new_tab": false,
-                    "placeholder": "",
-                    "padding-block-start": 0,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0
-                  },
-                  "blocks": {
-                    "group_aXnYyb": {
-                      "type": "group",
-                      "name": "t:names.group",
-                      "settings": {
-                        "content_direction": "column",
-                        "vertical_on_mobile": true,
-                        "horizontal_alignment": "flex-start",
-                        "vertical_alignment": "center",
-                        "align_baseline": false,
-                        "horizontal_alignment_flex_direction_column": "center",
-                        "vertical_alignment_flex_direction_column": "center",
-                        "gap": 12,
-                        "width": "fill",
-                        "custom_width": 100,
-                        "width_mobile": "fill",
-                        "custom_width_mobile": 100,
-                        "height": "fit",
-                        "custom_height": 100,
-                        "background_media": "none",
-                        "background_color": "{{ settings.color_palette.color4 }}",
-                        "video_position": "cover",
-                        "background_image_position": "cover",
-                        "toggle_overlay": false,
-                        "overlay_color": "#00000026",
-                        "overlay_style": "solid",
-                        "gradient_direction": "to top",
-                        "border": "none",
-                        "border_width": 1,
-                        "border_opacity": 100,
-                        "border_color": "",
-                        "border_radius": 10,
-                        "open_in_new_tab": false,
-                        "placeholder": "",
-                        "padding-block-start": 42,
-                        "padding-block-end": 42,
-                        "padding-inline-start": 0,
-                        "padding-inline-end": 0
-                      },
-                      "blocks": {
-                        "icon_CbKB4N": {
-                          "type": "icon",
-                          "name": "t:names.icon",
-                          "settings": {
-                            "icon": "heart",
-                            "width": 24,
-                            "open_in_new_tab": false,
-                            "icon_color": ""
-                          },
-                          "blocks": {}
-                        },
-                        "text_ktmjan": {
-                          "type": "text",
-                          "name": "t:names.heading",
-                          "settings": {
-                            "text": "<p>Made with care</p>",
-                            "width": "100%",
-                            "max_width": "normal",
-                            "alignment": "center",
-                            "type_preset": "h6",
-                            "font": "var(--font-body--family)",
-                            "font_size": "1rem",
-                            "line_height": "normal",
-                            "letter_spacing": "normal",
-                            "case": "none",
-                            "wrap": "pretty",
-                            "text_color": "",
-                            "background": false,
-                            "background_color": "#00000026",
-                            "corner_radius": 0,
-                            "padding-block-start": 0,
-                            "padding-block-end": 0,
-                            "padding-inline-start": 0,
-                            "padding-inline-end": 0
-                          },
-                          "blocks": {}
-                        }
-                      },
-                      "block_order": [
-                        "icon_CbKB4N",
-                        "text_ktmjan"
-                      ]
-                    },
-                    "group_YAKm6a": {
-                      "type": "group",
-                      "name": "t:names.group",
-                      "settings": {
-                        "content_direction": "column",
-                        "vertical_on_mobile": true,
-                        "horizontal_alignment": "flex-start",
-                        "vertical_alignment": "center",
-                        "align_baseline": false,
-                        "horizontal_alignment_flex_direction_column": "center",
-                        "vertical_alignment_flex_direction_column": "center",
-                        "gap": 12,
-                        "width": "fill",
-                        "custom_width": 100,
-                        "width_mobile": "fill",
-                        "custom_width_mobile": 100,
-                        "height": "fit",
-                        "custom_height": 100,
-                        "background_media": "none",
-                        "background_color": "{{ settings.color_palette.color4 }}",
-                        "video_position": "cover",
-                        "background_image_position": "cover",
-                        "toggle_overlay": false,
-                        "overlay_color": "#00000026",
-                        "overlay_style": "solid",
-                        "gradient_direction": "to top",
-                        "border": "none",
-                        "border_width": 1,
-                        "border_opacity": 100,
-                        "border_color": "",
-                        "border_radius": 10,
-                        "open_in_new_tab": false,
-                        "placeholder": "",
-                        "padding-block-start": 42,
-                        "padding-block-end": 42,
-                        "padding-inline-start": 0,
-                        "padding-inline-end": 0
-                      },
-                      "blocks": {
-                        "icon_AXg4Q3": {
-                          "type": "icon",
-                          "name": "t:names.icon",
-                          "settings": {
-                            "icon": "price_tag",
-                            "width": 24,
-                            "open_in_new_tab": false,
-                            "icon_color": ""
-                          },
-                          "blocks": {}
-                        },
-                        "text_DRMYrh": {
-                          "type": "text",
-                          "name": "t:names.heading",
-                          "settings": {
-                            "text": "<p>Great value</p>",
-                            "width": "100%",
-                            "max_width": "normal",
-                            "alignment": "center",
-                            "type_preset": "h6",
-                            "font": "var(--font-body--family)",
-                            "font_size": "1rem",
-                            "line_height": "normal",
-                            "letter_spacing": "normal",
-                            "case": "none",
-                            "wrap": "pretty",
-                            "text_color": "",
-                            "background": false,
-                            "background_color": "#00000026",
-                            "corner_radius": 0,
-                            "padding-block-start": 0,
-                            "padding-block-end": 0,
-                            "padding-inline-start": 0,
-                            "padding-inline-end": 0
-                          },
-                          "blocks": {}
-                        }
-                      },
-                      "block_order": [
-                        "icon_AXg4Q3",
-                        "text_DRMYrh"
-                      ]
-                    }
-                  },
-                  "block_order": [
-                    "group_aXnYyb",
-                    "group_YAKm6a"
-                  ]
-                },
-                "group_e7FkRj": {
-                  "type": "group",
-                  "name": "t:names.row",
-                  "settings": {
-                    "content_direction": "row",
-                    "vertical_on_mobile": false,
-                    "horizontal_alignment": "flex-start",
-                    "vertical_alignment": "center",
-                    "align_baseline": false,
-                    "horizontal_alignment_flex_direction_column": "flex-start",
-                    "vertical_alignment_flex_direction_column": "center",
-                    "gap": 12,
-                    "width": "fill",
-                    "custom_width": 100,
-                    "width_mobile": "fill",
-                    "custom_width_mobile": 100,
-                    "height": "fit",
-                    "custom_height": 100,
-                    "background_media": "none",
-                    "background_color": "",
-                    "video_position": "cover",
-                    "background_image_position": "cover",
-                    "toggle_overlay": false,
-                    "overlay_color": "#00000026",
-                    "overlay_style": "solid",
-                    "gradient_direction": "to top",
-                    "border": "none",
-                    "border_width": 1,
-                    "border_opacity": 100,
-                    "border_color": "",
-                    "border_radius": 0,
-                    "open_in_new_tab": false,
-                    "placeholder": "",
-                    "padding-block-start": 0,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0
-                  },
-                  "blocks": {
-                    "group_NGJDpt": {
-                      "type": "group",
-                      "name": "t:names.group",
-                      "settings": {
-                        "content_direction": "column",
-                        "vertical_on_mobile": true,
-                        "horizontal_alignment": "flex-start",
-                        "vertical_alignment": "center",
-                        "align_baseline": false,
-                        "horizontal_alignment_flex_direction_column": "center",
-                        "vertical_alignment_flex_direction_column": "center",
-                        "gap": 12,
-                        "width": "fill",
-                        "custom_width": 100,
-                        "width_mobile": "fill",
-                        "custom_width_mobile": 100,
-                        "height": "fit",
-                        "custom_height": 100,
-                        "background_media": "none",
-                        "background_color": "{{ settings.color_palette.color4 }}",
-                        "video_position": "cover",
-                        "background_image_position": "cover",
-                        "toggle_overlay": false,
-                        "overlay_color": "#00000026",
-                        "overlay_style": "solid",
-                        "gradient_direction": "to top",
-                        "border": "none",
-                        "border_width": 1,
-                        "border_opacity": 100,
-                        "border_color": "",
-                        "border_radius": 10,
-                        "open_in_new_tab": false,
-                        "placeholder": "",
-                        "padding-block-start": 42,
-                        "padding-block-end": 42,
-                        "padding-inline-start": 0,
-                        "padding-inline-end": 0
-                      },
-                      "blocks": {
-                        "icon_bjBHgQ": {
-                          "type": "icon",
-                          "name": "t:names.icon",
-                          "settings": {
-                            "icon": "plant",
-                            "width": 24,
-                            "open_in_new_tab": false,
-                            "icon_color": ""
-                          },
-                          "blocks": {}
-                        },
-                        "text_fN97nd": {
-                          "type": "text",
-                          "name": "t:names.heading",
-                          "settings": {
-                            "text": "<p>Elegant design</p>",
-                            "width": "100%",
-                            "max_width": "normal",
-                            "alignment": "center",
-                            "type_preset": "h6",
-                            "font": "var(--font-body--family)",
-                            "font_size": "1rem",
-                            "line_height": "normal",
-                            "letter_spacing": "normal",
-                            "case": "none",
-                            "wrap": "pretty",
-                            "text_color": "",
-                            "background": false,
-                            "background_color": "#00000026",
-                            "corner_radius": 0,
-                            "padding-block-start": 0,
-                            "padding-block-end": 0,
-                            "padding-inline-start": 0,
-                            "padding-inline-end": 0
-                          },
-                          "blocks": {}
-                        }
-                      },
-                      "block_order": [
-                        "icon_bjBHgQ",
-                        "text_fN97nd"
-                      ]
-                    },
-                    "group_73gqqM": {
-                      "type": "group",
-                      "name": "t:names.group",
-                      "settings": {
-                        "content_direction": "column",
-                        "vertical_on_mobile": true,
-                        "horizontal_alignment": "flex-start",
-                        "vertical_alignment": "center",
-                        "align_baseline": false,
-                        "horizontal_alignment_flex_direction_column": "center",
-                        "vertical_alignment_flex_direction_column": "center",
-                        "gap": 12,
-                        "width": "fill",
-                        "custom_width": 100,
-                        "width_mobile": "fill",
-                        "custom_width_mobile": 100,
-                        "height": "fit",
-                        "custom_height": 100,
-                        "background_media": "none",
-                        "background_color": "{{ settings.color_palette.color4 }}",
-                        "video_position": "cover",
-                        "background_image_position": "cover",
-                        "toggle_overlay": false,
-                        "overlay_color": "#00000026",
-                        "overlay_style": "solid",
-                        "gradient_direction": "to top",
-                        "border": "none",
-                        "border_width": 1,
-                        "border_opacity": 100,
-                        "border_color": "",
-                        "border_radius": 10,
-                        "open_in_new_tab": false,
-                        "placeholder": "",
-                        "padding-block-start": 42,
-                        "padding-block-end": 42,
-                        "padding-inline-start": 0,
-                        "padding-inline-end": 0
-                      },
-                      "blocks": {
-                        "icon_twG6iJ": {
-                          "type": "icon",
-                          "name": "t:names.icon",
-                          "settings": {
-                            "icon": "leather",
-                            "width": 24,
-                            "open_in_new_tab": false,
-                            "icon_color": ""
-                          },
-                          "blocks": {}
-                        },
-                        "text_UmcfKJ": {
-                          "type": "text",
-                          "name": "t:names.heading",
-                          "settings": {
-                            "text": "<p>Quality materials</p>",
-                            "width": "100%",
-                            "max_width": "normal",
-                            "alignment": "center",
-                            "type_preset": "h6",
-                            "font": "var(--font-body--family)",
-                            "font_size": "1rem",
-                            "line_height": "normal",
-                            "letter_spacing": "normal",
-                            "case": "none",
-                            "wrap": "pretty",
-                            "text_color": "",
-                            "background": false,
-                            "background_color": "#00000026",
-                            "corner_radius": 0,
-                            "padding-block-start": 0,
-                            "padding-block-end": 0,
-                            "padding-inline-start": 0,
-                            "padding-inline-end": 0
-                          },
-                          "blocks": {}
-                        }
-                      },
-                      "block_order": [
-                        "icon_twG6iJ",
-                        "text_UmcfKJ"
-                      ]
-                    }
-                  },
-                  "block_order": [
-                    "group_NGJDpt",
-                    "group_73gqqM"
-                  ]
-                }
-              },
-              "block_order": [
-                "group_XqRYxC",
-                "group_e7FkRj"
-              ]
-            },
-            "accordion_g8EVVp": {
-              "type": "accordion",
-              "name": "t:names.accordion",
-              "settings": {
-                "icon": "plus",
-                "dividers": true,
-                "divider_color": "{{ settings.color_palette.color4 }}",
-                "type_preset": "h4",
-                "background_color": "",
-                "text_color": "",
-                "border": "none",
-                "border_width": 1,
-                "border_opacity": 100,
-                "border_color": "",
-                "border_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {
-                "accordion_row_VyFryh": {
-                  "type": "_accordion-row",
-                  "settings": {
-                    "heading": "Details",
-                    "open_by_default": false,
-                    "icon": "none",
-                    "width": 20
-                  },
-                  "blocks": {
-                    "text_McjMWz": {
-                      "type": "text",
-                      "settings": {
-                        "text": "<p>This product is crafted with quality materials to ensure durability and performance. Designed with your convenience in mind, it seamlessly fits into your everyday life.</p>",
-                        "width": "100%",
-                        "max_width": "normal",
-                        "alignment": "left",
-                        "type_preset": "rte",
-                        "font": "var(--font-body--family)",
-                        "font_size": "1rem",
-                        "line_height": "normal",
-                        "letter_spacing": "normal",
-                        "case": "none",
-                        "wrap": "pretty",
-                        "text_color": "",
-                        "background": false,
-                        "background_color": "#00000026",
-                        "corner_radius": 0,
-                        "padding-block-start": 0,
-                        "padding-block-end": 0,
-                        "padding-inline-start": 0,
-                        "padding-inline-end": 0
-                      },
-                      "blocks": {}
-                    }
-                  },
-                  "block_order": [
-                    "text_McjMWz"
-                  ]
-                },
-                "accordion_row_aaFerA": {
-                  "type": "_accordion-row",
-                  "settings": {
-                    "heading": "Shipping & Returns",
-                    "open_by_default": false,
-                    "icon": "none",
-                    "width": 20
-                  },
-                  "blocks": {
-                    "text_DNPAct": {
-                      "type": "text",
-                      "settings": {
-                        "text": "<p>We strive to process and ship all orders in a timely manner, working diligently to ensure that your items are on their way to you as soon as possible. </p><p>We are committed to ensuring a positive shopping experience for all our customers. If for any reason you wish to return an item, we invite you to reach out to our team for assistance, and we will evaluate every return request with care and consideration.</p>",
-                        "width": "100%",
-                        "max_width": "normal",
-                        "alignment": "left",
-                        "type_preset": "rte",
-                        "font": "var(--font-body--family)",
-                        "font_size": "1rem",
-                        "line_height": "normal",
-                        "letter_spacing": "normal",
-                        "case": "none",
-                        "wrap": "pretty",
-                        "text_color": "",
-                        "background": false,
-                        "background_color": "#00000026",
-                        "corner_radius": 0,
-                        "padding-block-start": 0,
-                        "padding-block-end": 0,
-                        "padding-inline-start": 0,
-                        "padding-inline-end": 0
-                      },
-                      "blocks": {}
-                    }
-                  },
-                  "block_order": [
-                    "text_DNPAct"
-                  ]
-                }
-              },
-              "block_order": [
-                "accordion_row_VyFryh",
-                "accordion_row_aaFerA"
-              ]
-            }
-          },
-          "block_order": [
-            "text_GnyQiN",
-            "reviews",
-            "price_a7krng",
-            "variant_picker_R3rGDr",
-            "buy_buttons_eYQEYi",
-            "product_description_LfDYCg",
-            "group_X39hBc",
-            "accordion_g8EVVp"
-          ]
+            "text": "64 GB incluidos"
+          }
         }
       },
       "block_order": [
-        "disclosures_3Uh8eA"
+        "badge_screen",
+        "badge_battery",
+        "badge_storage"
       ],
       "settings": {
-        "content_width": "content-center-aligned",
-        "desktop_media_position": "left",
-        "equal_columns": false,
-        "limit_details_width": false,
-        "gap": 48,
-        "enable_sticky_add_to_cart": true,
-        "background_color": "{{ settings.color_palette.background }}",
-        "padding-block-start": 0,
-        "padding-block-end": 32
+        "kicker": "R36 Ultra",
+        "show_description": true,
+        "description_words": 34,
+        "badges_label": "Caracteristicas clave",
+        "stock_label": "En stock",
+        "sold_out_label": "Agotado",
+        "quantity_label": "Cantidad",
+        "show_quantity": true,
+        "button_label": "Anadir al carrito",
+        "sold_out_button_label": "Sin stock",
+        "note": "<p>Envio 24-48 h desde Valencia. Garantia de 2 anos y devolucion durante 30 dias.</p>",
+        "section_width": "page-width",
+        "media_position": "left",
+        "media_width": 52,
+        "media_limit": 3,
+        "image_fit": "contain",
+        "image_ratio": "1 / 1",
+        "image_resolution": 1600,
+        "image_border_radius": 8,
+        "background_color": "#1B1533",
+        "surface_color": "#241C40",
+        "border_color": "#4CC9F033",
+        "heading_color": "#F1EEFA",
+        "text_color": "#F1EEFA",
+        "muted_color": "#9B92B8",
+        "accent_color": "#4CC9F0",
+        "secondary_accent_color": "#B4FF39",
+        "button_background_color": "#FF7A45",
+        "button_text_color": "#1B1533",
+        "button_border_color": "#FF7A45",
+        "heading_size": 64,
+        "heading_size_mobile": 40,
+        "price_size": 38,
+        "text_size": 18,
+        "column_gap": 56,
+        "padding-block-start": 56,
+        "padding-block-end": 48
       }
     },
-    "section_NaqU9X": {
-      "type": "section",
+    "retro_feature_columns_product": {
+      "type": "retro-feature-columns",
       "blocks": {
-        "video_PthMbP": {
-          "type": "video",
-          "name": "t:names.video",
+        "feature_screen": {
+          "type": "feature",
           "settings": {
-            "source": "uploaded",
-            "video_url": "",
-            "video_autoplay": false,
-            "video_loop": true,
-            "alt": "",
-            "custom_width": 100,
-            "custom_width_mobile": 100,
-            "aspect_ratio": "16/9",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_color": "",
-            "border_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
+            "label": "PANTALLA",
+            "heading": "720x720",
+            "text": "<p>IPS de 4 pulgadas laminada en optica. Pixeles limpios, color estable y juego nitido.</p>"
+          }
+        },
+        "feature_battery": {
+          "type": "feature",
+          "settings": {
+            "label": "BATERIA",
+            "heading": "8 horas",
+            "text": "<p>3 000 mAh y extraible: se cambia sin herramientas y se ve la carga por fuera.</p>"
+          }
+        },
+        "feature_controls": {
+          "type": "feature",
+          "settings": {
+            "label": "MANDOS",
+            "heading": "2 · RGB",
+            "text": "<p>Joysticks 3D con anillo de color, gatillos mecanicos y cruceta de verdad.</p>"
+          }
         }
       },
       "block_order": [
-        "video_PthMbP"
+        "feature_screen",
+        "feature_battery",
+        "feature_controls"
       ],
-      "name": "t:names.video_section",
       "settings": {
-        "content_direction": "column",
-        "vertical_on_mobile": true,
-        "horizontal_alignment": "flex-start",
-        "vertical_alignment": "center",
-        "align_baseline": false,
-        "horizontal_alignment_flex_direction_column": "flex-start",
-        "vertical_alignment_flex_direction_column": "center",
-        "gap": 16,
         "section_width": "full-width",
-        "section_height": "small",
-        "section_height_custom": 50,
-        "background_media": "none",
-        "background_color": "{{ settings.color_palette.background }}",
-        "video_position": "cover",
-        "background_image_position": "cover",
-        "toggle_overlay": false,
-        "overlay_color": "#00000026",
-        "overlay_style": "solid",
-        "gradient_direction": "to top",
-        "border": "none",
-        "border_width": 1,
-        "border_opacity": 100,
-        "border_color": "",
-        "border_radius": 0,
+        "background_color": "#1B1533",
+        "surface_color": "#241C40",
+        "border_color": "#4CC9F033",
+        "label_color": "#9B92B8",
+        "heading_color": "#F1EEFA",
+        "text_color": "#C9C4D8",
         "padding-block-start": 0,
         "padding-block-end": 0
       }
     },
-    "product_list_zR9Cym": {
-      "type": "product-list",
+    "console_description_product": {
+      "type": "console-description",
       "blocks": {
-        "static-header": {
-          "type": "_product-list-content",
-          "static": true,
+        "console_nes": {
+          "type": "console",
           "settings": {
-            "content_direction": "column",
-            "vertical_on_mobile": true,
-            "horizontal_alignment": "flex-start",
-            "vertical_alignment": "center",
-            "align_baseline": false,
-            "horizontal_alignment_flex_direction_column": "flex-start",
-            "vertical_alignment_flex_direction_column": "center",
-            "gap": 12,
-            "width": "fill",
-            "custom_width": 100,
-            "width_mobile": "fill",
-            "custom_width_mobile": 100,
-            "height": "fit",
-            "custom_height": 100,
-            "background_media": "none",
-            "background_color": "",
-            "video_position": "cover",
-            "background_image_position": "cover",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_color": "",
-            "border_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {
-            "product_list_text_zDAmEe": {
-              "type": "_product-list-text",
-              "name": "t:names.collection_title",
-              "settings": {
-                "text": "<p>Shop The Full Collection</p>",
-                "width": "100%",
-                "max_width": "normal",
-                "alignment": "center",
-                "type_preset": "h2",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "text_color": "",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "product_list_text_zDAmEe"
-          ]
+            "name": "NES",
+            "highlight": false
+          }
         },
-        "static-product-card": {
-          "type": "_product-card",
-          "name": "t:names.product_card",
-          "static": true,
+        "console_gb": {
+          "type": "console",
           "settings": {
-            "product_card_gap": 0,
-            "background_color": "{{ settings.color_palette.background }}",
-            "border": "none",
-            "border_width": 0,
-            "border_opacity": 100,
-            "border_color": "",
-            "border_radius": 10,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {
-            "product_card_gallery_Hf6KQF": {
-              "type": "_product-card-gallery",
-              "name": "t:names.product_card_media",
-              "settings": {
-                "image_ratio": "square",
-                "border": "none",
-                "border_width": 1,
-                "border_opacity": 100,
-                "border_color": "",
-                "border_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "group_VPQXaP": {
-              "type": "_product-card-group",
-              "name": "t:names.group",
-              "settings": {
-                "content_direction": "column",
-                "vertical_on_mobile": true,
-                "horizontal_alignment": "space-between",
-                "vertical_alignment": "flex-end",
-                "align_baseline": false,
-                "horizontal_alignment_flex_direction_column": "flex-start",
-                "vertical_alignment_flex_direction_column": "center",
-                "gap": 4,
-                "width": "fill",
-                "custom_width": 100,
-                "width_mobile": "fill",
-                "custom_width_mobile": 100,
-                "height": "fit",
-                "custom_height": 100,
-                "background_media": "none",
-                "background_color": "",
-                "video_position": "cover",
-                "background_image_position": "cover",
-                "toggle_overlay": false,
-                "overlay_color": "#00000026",
-                "overlay_style": "solid",
-                "gradient_direction": "to top",
-                "border": "none",
-                "border_width": 1,
-                "border_opacity": 100,
-                "border_color": "",
-                "border_radius": 0,
-                "open_in_new_tab": false,
-                "padding-block-start": 24,
-                "padding-block-end": 24,
-                "padding-inline-start": 24,
-                "padding-inline-end": 16
-              },
-              "blocks": {
-                "product_title_hHha9n": {
-                  "type": "product-title",
-                  "name": "t:names.product_title",
-                  "settings": {
-                    "width": "fit-content",
-                    "max_width": "normal",
-                    "alignment": "left",
-                    "type_preset": "paragraph",
-                    "font": "var(--font-body--family)",
-                    "font_size": "1rem",
-                    "line_height": "normal",
-                    "letter_spacing": "normal",
-                    "case": "none",
-                    "wrap": "pretty",
-                    "text_color": "",
-                    "background": false,
-                    "background_color": "#00000026",
-                    "corner_radius": 0,
-                    "padding-block-start": 0,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0
-                  },
-                  "blocks": {}
-                },
-                "price_gL8gJK": {
-                  "type": "price",
-                  "name": "t:names.product_price",
-                  "settings": {
-                    "show_sale_price_first": true,
-                    "show_installments": false,
-                    "show_tax_info": false,
-                    "type_preset": "paragraph",
-                    "width": "fit-content",
-                    "alignment": "right",
-                    "font": "var(--font-body--family)",
-                    "font_size": "1rem",
-                    "line_height": "normal",
-                    "letter_spacing": "normal",
-                    "case": "none",
-                    "text_color": "",
-                    "padding-block-start": 0,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0
-                  },
-                  "blocks": {}
-                },
-                "swatches_Fhf4Yz": {
-                  "type": "swatches",
-                  "name": "t:names.swatches",
-                  "settings": {
-                    "product_swatches_alignment": "flex-start",
-                    "product_swatches_alignment_mobile": "flex-start",
-                    "hide_padding": false,
-                    "product_swatches_padding_top": 4,
-                    "product_swatches_padding_bottom": 0,
-                    "product_swatches_padding_left": 0,
-                    "product_swatches_padding_right": 0
-                  },
-                  "blocks": {}
-                }
-              },
-              "block_order": [
-                "product_title_hHha9n",
-                "price_gL8gJK",
-                "swatches_Fhf4Yz"
-              ]
-            }
-          },
-          "block_order": [
-            "product_card_gallery_Hf6KQF",
-            "group_VPQXaP"
-          ]
+            "name": "Game Boy",
+            "highlight": false
+          }
+        },
+        "console_gba": {
+          "type": "console",
+          "settings": {
+            "name": "GBA",
+            "highlight": false
+          }
+        },
+        "console_md": {
+          "type": "console",
+          "settings": {
+            "name": "Mega Drive",
+            "highlight": false
+          }
+        },
+        "console_snes": {
+          "type": "console",
+          "settings": {
+            "name": "Super Nintendo",
+            "highlight": false
+          }
+        },
+        "console_mame": {
+          "type": "console",
+          "settings": {
+            "name": "MAME",
+            "highlight": false
+          }
+        },
+        "console_psp": {
+          "type": "console",
+          "settings": {
+            "name": "PSP",
+            "highlight": false
+          }
+        },
+        "console_n64": {
+          "type": "console",
+          "settings": {
+            "name": "Nintendo 64",
+            "highlight": true
+          }
+        },
+        "stat_games": {
+          "type": "stat",
+          "settings": {
+            "value": "20 000",
+            "label": "juegos preinstalados"
+          }
+        },
+        "stat_storage": {
+          "type": "stat",
+          "settings": {
+            "value": "64 GB",
+            "label": "tarjeta incluida"
+          }
+        },
+        "stat_weight": {
+          "type": "stat",
+          "settings": {
+            "value": "190 g",
+            "label": "peso con bateria"
+          }
         }
       },
-      "name": "t:names.product_list",
+      "block_order": [
+        "console_nes",
+        "console_gb",
+        "console_gba",
+        "console_md",
+        "console_snes",
+        "console_mame",
+        "console_psp",
+        "console_n64",
+        "stat_games",
+        "stat_storage",
+        "stat_weight"
+      ],
       "settings": {
-        "collection": "all",
-        "layout_type": "grid",
-        "carousel_on_mobile": false,
-        "max_products": 4,
-        "columns": 4,
-        "mobile_columns": "2",
-        "mobile_card_size": "60cqw",
-        "columns_gap": 12,
-        "rows_gap": 12,
-        "icons_style": "arrow",
-        "icons_shape": "none",
+        "heading": "Once consolas, una sola caja",
+        "text": "<p>Cada emulador llega instalado y probado. Los juegos ya estan dentro, ordenados por sistema.</p>",
+        "console_list_label": "Consolas emuladas",
+        "caption": "Imagen del producto publicado",
         "section_width": "page-width",
-        "horizontal_alignment": "flex-start",
-        "gap": 28,
-        "background_color": "{{ settings.color_palette.background }}",
-        "padding-block-start": 60,
+        "image_position": "right",
+        "image_width": 40,
+        "column_gap": 64,
+        "background_color": "#1B1533",
+        "surface_color": "#241C4000",
+        "heading_color": "#F1EEFA",
+        "text_color": "#F1EEFA",
+        "muted_color": "#9B92B8",
+        "accent_color": "#A99CFF",
+        "chip_background_color": "#1B153300",
+        "chip_active_background_color": "#564A86",
+        "divider_color": "#4CC9F033",
+        "heading_size": 48,
+        "heading_size_mobile": 36,
+        "text_size": 18,
+        "chip_text_size": 16,
+        "stat_value_size": 38,
+        "image_fit": "contain",
+        "image_ratio": "1 / 1",
+        "image_max_height": 560,
+        "image_resolution": 1600,
+        "image_background_color": "#241C4052",
+        "image_border_radius": 8,
+        "image_border_width": 0,
+        "image_border_color": "#F1EEFA",
+        "padding-block-start": 72,
+        "padding-block-end": 72
+      }
+    },
+    "box_contents_product": {
+      "type": "box-contents",
+      "blocks": {
+        "item_console": {
+          "type": "item",
+          "settings": {
+            "title": "Consola R36 Ultra",
+            "text": "<p>Lista para encender y jugar.</p>"
+          }
+        },
+        "item_card": {
+          "type": "item",
+          "settings": {
+            "title": "microSD de 64 GB",
+            "text": "<p>Cargada y ordenada por consola.</p>"
+          }
+        },
+        "item_cable": {
+          "type": "item",
+          "settings": {
+            "title": "Cable USB-C",
+            "text": "<p>Carga completa en unas 2 horas.</p>"
+          }
+        },
+        "item_guide": {
+          "type": "item",
+          "settings": {
+            "title": "Guia en espanol",
+            "text": "<p>Una hoja clara. No hace falta mas.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "item_console",
+        "item_card",
+        "item_cable",
+        "item_guide"
+      ],
+      "settings": {
+        "heading": "En la caja",
+        "section_width": "page-width",
+        "background_color": "#1B1533",
+        "heading_color": "#F1EEFA",
+        "item_title_color": "#F1EEFA",
+        "item_text_color": "#9B92B8",
+        "card_background_color": "#241C4047",
+        "card_border_color": "#4CC9F033",
+        "heading_size": 32,
+        "item_title_size": 16,
+        "item_text_size": 14,
+        "column_gap": 12,
+        "card_padding": 20,
+        "card_border_width": 1,
+        "card_border_radius": 8,
+        "padding-block-start": 40,
+        "padding-block-end": 72
+      }
+    },
+    "warranty_cta_product": {
+      "type": "warranty-cta",
+      "settings": {
+        "heading": "Garantia de 2 anos y 30 dias para pensarlo",
+        "text": "<p>Si no encaja, la recogemos en tu casa y te devolvemos el importe completo. Sin preguntas y sin coste.</p>",
+        "button_label": "Comprar ahora · 45 €",
+        "button_link": "/cart/add?id=60483272704334&quantity=1",
+        "open_in_new_tab": false,
+        "section_width": "full-width",
+        "background_color": "#1B1533",
+        "panel_color": "#20204A",
+        "border_color": "#4CC9F033",
+        "heading_color": "#F1EEFA",
+        "text_color": "#C9C4D8",
+        "button_text_color": "#1B1533",
+        "button_background_color": "#FF7A45",
+        "button_border_color": "#FF7A45",
+        "heading_size": 30,
+        "text_size": 15,
+        "button_text_size": 15,
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "shipping_faq_product": {
+      "type": "shipping-faq",
+      "blocks": {
+        "shipping_peninsula": {
+          "type": "shipping_row",
+          "settings": {
+            "region": "Peninsula",
+            "delivery": "24-48 h · gratis"
+          }
+        },
+        "shipping_baleares": {
+          "type": "shipping_row",
+          "settings": {
+            "region": "Baleares",
+            "delivery": "48-72 h · gratis"
+          }
+        },
+        "shipping_canarias": {
+          "type": "shipping_row",
+          "settings": {
+            "region": "Canarias y Ceuta",
+            "delivery": "3-5 dias · 6 €"
+          }
+        },
+        "question_games": {
+          "type": "question",
+          "settings": {
+            "question": "Los juegos vienen incluidos?",
+            "answer": "<p>Si. La tarjeta de 64 GB llega cargada y organizada por consola. Puedes anadir tus propios archivos copiandolos a la tarjeta desde el ordenador.</p>",
+            "open_by_default": true
+          }
+        },
+        "question_install": {
+          "type": "question",
+          "settings": {
+            "question": "Hay que instalar algo?",
+            "answer": "<p>No. La consola llega preparada: enciendes, eliges sistema y juegas.</p>",
+            "open_by_default": false
+          }
+        },
+        "question_tv": {
+          "type": "question",
+          "settings": {
+            "question": "Se puede conectar a la television?",
+            "answer": "<p>Depende de la configuracion concreta del modelo y el cable utilizado. Si quieres usarla en TV, confirma compatibilidad antes de comprar.</p>",
+            "open_by_default": false
+          }
+        },
+        "question_warranty": {
+          "type": "question",
+          "settings": {
+            "question": "Que cubre la garantia de 2 anos?",
+            "answer": "<p>Cubre fallos de fabricacion y funcionamiento normal del dispositivo. No cubre golpes, humedad ni manipulaciones internas.</p>",
+            "open_by_default": false
+          }
+        }
+      },
+      "block_order": [
+        "shipping_peninsula",
+        "shipping_baleares",
+        "shipping_canarias",
+        "question_games",
+        "question_install",
+        "question_tv",
+        "question_warranty"
+      ],
+      "settings": {
+        "heading": "Envios y preguntas",
+        "text": "<p>Salimos de Valencia. Pedidos antes de las 15:00 se envian el mismo dia.</p>",
+        "section_width": "page-width",
+        "background_color": "#1B1533",
+        "heading_color": "#F1EEFA",
+        "text_color": "#F1EEFA",
+        "muted_color": "#9B92B8",
+        "accent_color": "#A99CFF",
+        "divider_color": "#4CC9F000",
+        "heading_size": 36,
+        "text_size": 16,
+        "question_size": 17,
+        "column_gap": 64,
+        "padding-block-start": 72,
         "padding-block-end": 72
       }
     }
   },
   "order": [
-    "main",
-    "section_NaqU9X",
-    "product_list_zR9Cym"
+    "retro_product_hero_product",
+    "retro_feature_columns_product",
+    "console_description_product",
+    "box_contents_product",
+    "warranty_cta_product",
+    "shipping_faq_product"
   ]
 }

@@ -2,6 +2,11 @@
   assign console_blocks = section.blocks | where: 'type', 'console'
   assign stat_blocks = section.blocks | where: 'type', 'stat'
   assign image_resolution = section.settings.image_resolution | plus: 0
+  assign description_image = section.settings.image
+
+  if description_image == blank and product.featured_image != blank
+    assign description_image = product.featured_image
+  endif
 
   if section.settings.background_color != blank
     render 'contrast-override', background_color: section.settings.background_color, section_id: section.id
@@ -89,14 +94,14 @@
     </div>
 
     <figure class="console-description__media">
-      {%- if section.settings.image != blank -%}
+      {%- if description_image != blank -%}
         {{
-          section.settings.image
+          description_image
           | image_url: width: image_resolution
           | image_tag:
             widths: '360, 533, 720, 900, 1200, 1600, 2048, 2400',
             sizes: '(min-width: 990px) 42vw, 100vw',
-            alt: section.settings.image.alt,
+            alt: description_image.alt,
             loading: 'lazy',
             class: 'console-description__image'
         }}
