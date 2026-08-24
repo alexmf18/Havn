@@ -58,7 +58,7 @@
 
   .retro-features__item {
     min-width: 0;
-    padding: clamp(2.4rem, 4vw, 4.8rem) clamp(1.6rem, 3vw, 3.2rem);
+    padding: 4rem 3.2rem;
   }
 
   .retro-features__item + .retro-features__item {
@@ -69,7 +69,7 @@
     margin: 0 0 1.1rem;
     color: var(--retro-features-label, #9b92b8);
     font-family: var(--font-accent--family);
-    font-size: clamp(1.2rem, 1.1vw, 1.4rem);
+    font-size: 1.3rem;
     font-style: var(--font-accent--style);
     font-weight: 600;
     letter-spacing: 0.12em;
@@ -81,7 +81,7 @@
     margin: 0;
     color: var(--retro-features-heading, #f1eefa);
     font-family: var(--font-primary--family);
-    font-size: clamp(4rem, 6vw, 6.4rem);
+    font-size: 5.6rem;
     font-style: var(--font-primary--style);
     font-weight: 600;
     letter-spacing: 0;
@@ -93,7 +93,7 @@
     max-width: 34rem;
     color: var(--retro-features-text, #c9c4d8);
     font-family: var(--font-body--family);
-    font-size: clamp(1.5rem, 1.4vw, 1.8rem);
+    font-size: 1.7rem;
     line-height: 1.45;
   }
 
@@ -116,7 +116,32 @@
     }
 
     .retro-features__item {
-      padding-inline: var(--page-margin);
+      padding: 3.2rem var(--page-margin);
+    }
+
+    .retro-features__heading {
+      font-size: 4.4rem;
+      line-height: 1;
+      overflow-wrap: anywhere;
+    }
+
+    .retro-features__text {
+      max-width: 42rem;
+      font-size: 1.6rem;
+    }
+  }
+
+  @media screen and (max-width: 479px) {
+    .retro-features__item {
+      padding-block: 2.8rem;
+    }
+
+    .retro-features__heading {
+      font-size: 3.8rem;
+    }
+
+    .retro-features__label {
+      font-size: 1.2rem;
     }
   }
 {% endstylesheet %}

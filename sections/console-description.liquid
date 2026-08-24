@@ -186,6 +186,7 @@
     font-style: var(--font-accent--style);
     font-weight: 500;
     line-height: 1.2;
+    overflow-wrap: anywhere;
   }
 
   .console-description__chip--highlight {
@@ -217,6 +218,7 @@
     font-weight: 700;
     letter-spacing: 0;
     line-height: 1;
+    overflow-wrap: anywhere;
   }
 
   .console-description__stat-label {
@@ -243,6 +245,7 @@
     background: var(--console-description-image-background, transparent);
     border: var(--console-description-image-border-width) solid var(--console-description-image-border, #f1eefa);
     border-radius: var(--console-description-image-radius);
+    height: auto;
   }
 
   .console-description__image--placeholder {
@@ -272,11 +275,56 @@
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 1.6rem;
     }
+
+    .console-description__media {
+      max-width: min(100%, 56rem);
+    }
+
+    .console-description__image {
+      max-height: min(var(--console-description-image-max-height), 64rem);
+    }
   }
 
   @media screen and (max-width: 749px) {
+    .console-description__text {
+      font-size: min(var(--console-description-text-size), 1.6rem);
+    }
+
+    .console-description__chips {
+      gap: 0.7rem;
+      margin-block-start: 2.4rem;
+    }
+
+    .console-description__chip {
+      min-height: 3rem;
+      padding: 0.45rem 1rem;
+      font-size: min(var(--console-description-chip-size), 1.4rem);
+    }
+
     .console-description__stats {
       grid-template-columns: 1fr;
+      gap: 1.8rem;
+      margin-block-start: 3rem;
+      padding-block-start: 2.4rem;
+    }
+
+    .console-description__stat-value {
+      font-size: min(var(--console-description-stat-size), 3.4rem);
+    }
+
+    .console-description__stat-label,
+    .console-description__caption {
+      font-size: min(calc(var(--console-description-text-size) - 2px), 1.4rem);
+    }
+  }
+
+  @media screen and (max-width: 479px) {
+    .console-description__heading {
+      font-size: min(var(--console-description-heading-size-mobile), 3.4rem);
+    }
+
+    .console-description__media {
+      justify-self: stretch;
     }
   }
 {% endstylesheet %}

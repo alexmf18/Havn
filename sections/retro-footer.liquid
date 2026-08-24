@@ -131,7 +131,7 @@
   .retro-footer__menus {
     display: grid;
     grid-template-columns: repeat(3, minmax(10rem, 1fr));
-    gap: clamp(3.2rem, 6vw, 7.2rem);
+    gap: 7.2rem;
     min-width: min(48rem, 100%);
   }
 
@@ -170,12 +170,26 @@
   @media screen and (max-width: 749px) {
     .retro-footer__inner {
       grid-template-columns: 1fr;
+      gap: 3.2rem;
     }
 
     .retro-footer__menus {
-      grid-template-columns: 1fr;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 2.4rem;
       min-width: 0;
+    }
+
+    .retro-footer__text,
+    .retro-footer__links a,
+    .retro-footer__menu-heading {
+      font-size: min(var(--retro-footer-link-size), 1.4rem);
+    }
+  }
+
+  @media screen and (max-width: 479px) {
+    .retro-footer__menus {
+      grid-template-columns: 1fr;
+      gap: 2.2rem;
     }
   }
 {% endstylesheet %}

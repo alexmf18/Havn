@@ -62,7 +62,7 @@
     gap: 3.2rem;
     align-items: center;
     min-height: 17.2rem;
-    padding: clamp(2.8rem, 4vw, 4.8rem);
+    padding: 4.8rem;
     border-block: 1px solid var(--warranty-cta-border, rgb(76 201 240 / 18%));
     background: var(--warranty-cta-panel, transparent);
   }
@@ -118,11 +118,26 @@
     .warranty-cta__inner {
       grid-template-columns: 1fr;
       align-items: start;
+      gap: 2.4rem;
+      min-height: 0;
+      padding: 3.2rem var(--page-margin);
+    }
+
+    .warranty-cta__heading {
+      font-size: min(var(--warranty-cta-heading-size), 3rem);
+    }
+
+    .warranty-cta__text {
+      font-size: min(var(--warranty-cta-text-size), 1.5rem);
     }
 
     .warranty-cta__button {
       width: 100%;
       min-width: 0;
+      min-height: 4.8rem;
+      padding-inline: 1.6rem;
+      font-size: min(var(--warranty-cta-button-size), 1.5rem);
+      text-align: center;
     }
   }
 {% endstylesheet %}
@@ -150,7 +165,7 @@
       "type": "text",
       "id": "button_label",
       "label": "Texto del boton",
-      "default": "Anadir al carrito · 60 €"
+      "default": "Anadir al carrito · 45 €"
     },
     {
       "type": "url",
@@ -296,10 +311,7 @@
   "presets": [
     {
       "name": "Garantia y compra",
-      "category": "Texto",
-      "settings": {
-        "button_link": "/cart"
-      }
+      "category": "Texto"
     }
   ]
 }
