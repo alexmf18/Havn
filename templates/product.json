@@ -3,29 +3,36 @@
     "retro_product_hero_product": {
       "type": "retro-product-hero",
       "blocks": {
-        "badge_screen": {
+        "badge_visa": {
           "type": "badge",
           "settings": {
             "text": "Visa"
           }
         },
-        "badge_battery": {
+        "badge_mastercard": {
           "type": "badge",
           "settings": {
             "text": "Mastercard"
           }
         },
-        "badge_storage": {
+        "badge_paypal": {
           "type": "badge",
           "settings": {
             "text": "PayPal"
           }
+        },
+        "badge_bizum": {
+          "type": "badge",
+          "settings": {
+            "text": "Bizum"
+          }
         }
       },
       "block_order": [
-        "badge_screen",
-        "badge_battery",
-        "badge_storage"
+        "badge_visa",
+        "badge_mastercard",
+        "badge_paypal",
+        "badge_bizum"
       ],
       "settings": {
         "kicker": "El regalo que se enciende solo",
@@ -60,7 +67,7 @@
         "sidebar_width": 330,
         "column_gap": 0,
         "image_size": 76,
-        "image_resolution": 1600,
+        "image_resolution": 1680,
         "image_fit": "contain",
         "image_ratio": "auto",
         "background_color": "#11111F",
