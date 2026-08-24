@@ -1,13 +1,6 @@
 {% liquid
   assign current_variant = product.selected_or_first_available_variant
-  assign media_items = product.media
-  assign hero_image_width = section.settings.image_resolution | plus: 0
   assign product_kicker = section.settings.kicker
-  assign visible_media_count = media_items.size | at_most: section.settings.media_limit
-
-  if visible_media_count == 0 and product.featured_image != blank
-    assign visible_media_count = 1
-  endif
 
   if product_kicker == blank and product.vendor != blank
     assign product_kicker = product.vendor
@@ -23,464 +16,543 @@
 ></div>
 
 <section
-  class="retro-product-hero section section--{{ section.settings.section_width }} spacing-style retro-product-hero--media-{{ section.settings.media_position }}{% if section.settings.background_color != blank %} color-custom-{{ section.id }}{% endif %}"
+  class="retro-product-page section section--{{ section.settings.section_width }} spacing-style{% if section.settings.background_color != blank %} color-custom-{{ section.id }}{% endif %}"
   style="
     {% render 'spacing-style', settings: section.settings %}
-    --retro-product-surface: {{ section.settings.surface_color }};
-    --retro-product-text: {{ section.settings.text_color }};
-    --retro-product-muted: {{ section.settings.muted_color }};
-    --retro-product-heading: {{ section.settings.heading_color }};
-    --retro-product-accent: {{ section.settings.accent_color }};
-    --retro-product-secondary: {{ section.settings.secondary_accent_color }};
-    --retro-product-button-bg: {{ section.settings.button_background_color }};
-    --retro-product-button-text: {{ section.settings.button_text_color }};
-    --retro-product-button-border: {{ section.settings.button_border_color }};
-    --retro-product-border: {{ section.settings.border_color }};
-    --retro-product-heading-size: {{ section.settings.heading_size }}px;
-    --retro-product-heading-mobile: {{ section.settings.heading_size_mobile }}px;
-    --retro-product-text-size: {{ section.settings.text_size }}px;
-    --retro-product-price-size: {{ section.settings.price_size }}px;
-    --retro-product-media-width: {{ section.settings.media_width }}%;
-    --retro-product-image-ratio: {{ section.settings.image_ratio }};
-    --retro-product-image-fit: {{ section.settings.image_fit }};
-    --retro-product-image-radius: {{ section.settings.image_border_radius }}px;
-    --retro-product-gap: {{ section.settings.column_gap }}px;
+    --retro-product-page-bg: {{ section.settings.background_color }};
+    --retro-product-page-hero-bg: {{ section.settings.hero_panel_color }};
+    --retro-product-page-panel: {{ section.settings.panel_color }};
+    --retro-product-page-text: {{ section.settings.text_color }};
+    --retro-product-page-dark-text: {{ section.settings.dark_text_color }};
+    --retro-product-page-muted: {{ section.settings.muted_color }};
+    --retro-product-page-light-muted: {{ section.settings.light_muted_color }};
+    --retro-product-page-heading: {{ section.settings.heading_color }};
+    --retro-product-page-border: {{ section.settings.border_color }};
+    --retro-product-page-accent: {{ section.settings.accent_color }};
+    --retro-product-page-button-bg: {{ section.settings.button_background_color }};
+    --retro-product-page-button-text: {{ section.settings.button_text_color }};
+    --retro-product-page-heading-size: {{ section.settings.heading_size }}px;
+    --retro-product-page-heading-mobile: {{ section.settings.heading_size_mobile }}px;
+    --retro-product-page-text-size: {{ section.settings.text_size }}px;
+    --retro-product-page-price-size: {{ section.settings.price_size }}px;
+    --retro-product-page-image-size: {{ section.settings.image_size }}%;
+    --retro-product-page-image-fit: {{ section.settings.image_fit }};
+    --retro-product-page-image-ratio: {{ section.settings.image_ratio }};
+    --retro-product-page-sidebar-width: {{ section.settings.sidebar_width }}px;
+    --retro-product-page-gap: {{ section.settings.column_gap }}px;
   "
 >
-  <div class="retro-product-hero__inner">
-    <div class="retro-product-hero__media">
-      <div class="retro-product-hero__screen retro-product-hero__screen--count-{{ visible_media_count }}">
-        {%- if media_items.size > 0 -%}
-        {%- for media in media_items limit: section.settings.media_limit -%}
-          {%- if media.preview_image != blank -%}
-            {% liquid
-              assign image_loading = 'lazy'
-              if forloop.first
-                assign image_loading = 'eager'
-              endif
-            %}
-            <figure class="retro-product-hero__frame{% if forloop.first %} retro-product-hero__frame--primary{% endif %}">
-              {{
-                media.preview_image
-                | image_url: width: hero_image_width
-                  | image_tag:
-                    widths: '360, 533, 720, 900, 1200, 1600, 2048',
-                    sizes: '(min-width: 990px) 50vw, 100vw',
-                    alt: media.alt,
-                    loading: image_loading,
-                    class: 'retro-product-hero__image'
-              }}
-            </figure>
-            {%- endif -%}
-          {%- endfor -%}
-        {%- elsif product.featured_image != blank -%}
-          <figure class="retro-product-hero__frame retro-product-hero__frame--primary">
+  <div class="retro-product-page__layout">
+    <div class="retro-product-page__main">
+      <div class="retro-product-page__intro">
+        <div class="retro-product-page__product-shot">
+          {%- if product.featured_image != blank -%}
             {{
               product.featured_image
-              | image_url: width: hero_image_width
+              | image_url: width: section.settings.image_resolution
               | image_tag:
                 widths: '360, 533, 720, 900, 1200, 1600, 2048',
-                sizes: '(min-width: 990px) 50vw, 100vw',
+                sizes: '(min-width: 990px) 34vw, 78vw',
                 alt: product.featured_image.alt,
                 loading: 'eager',
-                class: 'retro-product-hero__image'
+                class: 'retro-product-page__image'
             }}
-          </figure>
-        {%- else -%}
-          <figure class="retro-product-hero__frame retro-product-hero__frame--primary">
-            {{ 'product-1' | placeholder_svg_tag: 'retro-product-hero__image retro-product-hero__placeholder' }}
-          </figure>
-        {%- endif -%}
-      </div>
-    </div>
-
-    <div class="retro-product-hero__content">
-      {%- if product_kicker != blank -%}
-        <p class="retro-product-hero__kicker">{{ product_kicker | escape }}</p>
-      {%- endif -%}
-
-      <h1 class="retro-product-hero__heading">{{ product.title | escape }}</h1>
-
-      <div class="retro-product-hero__meta">
-        <span class="retro-product-hero__price">
-          {{ current_variant.price | money }}
-        </span>
-
-        {%- if current_variant.compare_at_price > current_variant.price -%}
-          <span class="retro-product-hero__compare">
-            {{ current_variant.compare_at_price | money }}
-          </span>
-        {%- endif -%}
-
-        {%- if product.available -%}
-          <span class="retro-product-hero__stock">{{ section.settings.stock_label | escape }}</span>
-        {%- else -%}
-          <span class="retro-product-hero__stock retro-product-hero__stock--sold">{{ section.settings.sold_out_label | escape }}</span>
-        {%- endif -%}
-      </div>
-
-      {%- if section.settings.show_description and product.description != blank -%}
-        <div class="retro-product-hero__description">
-          {{ product.description | strip_html | truncatewords: section.settings.description_words }}
-        </div>
-      {%- endif -%}
-
-      {%- if section.blocks.size > 0 -%}
-        <div class="retro-product-hero__chips" aria-label="{{ section.settings.badges_label | escape }}">
-          {%- for block in section.blocks -%}
-            <span class="retro-product-hero__chip" {{ block.shopify_attributes }}>
-              {{ block.settings.text | escape }}
-            </span>
-          {%- endfor -%}
-        </div>
-      {%- endif -%}
-
-      {%- form 'product', product, class: 'retro-product-hero__form' -%}
-        <input type="hidden" name="id" value="{{ current_variant.id }}">
-
-        {%- if section.settings.show_quantity -%}
-          <label class="retro-product-hero__quantity">
-            <span>{{ section.settings.quantity_label | escape }}</span>
-            <input
-              type="number"
-              name="quantity"
-              value="1"
-              min="1"
-              {% if current_variant.inventory_management and current_variant.inventory_policy == 'deny' %}
-                max="{{ current_variant.inventory_quantity }}"
-              {% endif %}
-            >
-          </label>
-        {%- endif -%}
-
-        <button
-          class="retro-product-hero__button"
-          type="submit"
-          {% unless product.available %}
-            disabled
-          {% endunless %}
-        >
-          {%- if product.available -%}
-            {{ section.settings.button_label | escape }}
           {%- else -%}
-            {{ section.settings.sold_out_button_label | escape }}
+            {{ 'product-1' | placeholder_svg_tag: 'retro-product-page__image retro-product-page__placeholder' }}
           {%- endif -%}
-        </button>
-      {%- endform -%}
+        </div>
 
-      {%- if section.settings.note != blank -%}
-        <div class="retro-product-hero__note">
-          {{ section.settings.note }}
+        <div class="retro-product-page__copy">
+          {%- if product_kicker != blank -%}
+            <p class="retro-product-page__kicker">{{ product_kicker | escape }}</p>
+          {%- endif -%}
+
+          <h1 class="retro-product-page__title">
+            {%- if section.settings.display_heading != blank -%}
+              {{ section.settings.display_heading | escape }}
+            {%- else -%}
+              {{ product.title | escape }}
+            {%- endif -%}
+          </h1>
+
+          {%- if section.settings.display_text != blank -%}
+            <div class="retro-product-page__lead">
+              {{ section.settings.display_text }}
+            </div>
+          {%- endif -%}
+        </div>
+      </div>
+
+      {%- if section.settings.show_process -%}
+        <div class="retro-product-page__section">
+          <h2 class="retro-product-page__section-title">{{ section.settings.process_heading | escape }}</h2>
+          <div class="retro-product-page__process">
+            <article class="retro-product-page__process-item">
+              <p>{{ section.settings.step_one_label | escape }}</p>
+              <h3>{{ section.settings.step_one_title | escape }}</h3>
+              <div>{{ section.settings.step_one_text }}</div>
+            </article>
+            <article class="retro-product-page__process-item">
+              <p>{{ section.settings.step_two_label | escape }}</p>
+              <h3>{{ section.settings.step_two_title | escape }}</h3>
+              <div>{{ section.settings.step_two_text }}</div>
+            </article>
+            <article class="retro-product-page__process-item">
+              <p>{{ section.settings.step_three_label | escape }}</p>
+              <h3>{{ section.settings.step_three_title | escape }}</h3>
+              <div>{{ section.settings.step_three_text }}</div>
+            </article>
+            <article class="retro-product-page__process-item">
+              <p>{{ section.settings.step_four_label | escape }}</p>
+              <h3>{{ section.settings.step_four_title | escape }}</h3>
+              <div>{{ section.settings.step_four_text }}</div>
+            </article>
+          </div>
         </div>
       {%- endif -%}
     </div>
+
+    <aside class="retro-product-page__sidebar" aria-label="{{ section.settings.purchase_panel_label | escape }}">
+      <div class="retro-product-page__purchase">
+        <p class="retro-product-page__eyebrow">{{ product_kicker | escape }}</p>
+        <h2 class="retro-product-page__purchase-title">{{ product.title | escape }}</h2>
+
+        <div class="retro-product-page__price-row">
+          <span class="retro-product-page__price">{{ current_variant.price | money }}</span>
+          {%- if current_variant.compare_at_price > current_variant.price -%}
+            <span class="retro-product-page__compare">{{ current_variant.compare_at_price | money }}</span>
+          {%- endif -%}
+        </div>
+
+        {%- if section.settings.tax_text != blank -%}
+          <p class="retro-product-page__tax">{{ section.settings.tax_text | escape }}</p>
+        {%- endif -%}
+
+        {%- if section.settings.show_description and product.description != blank -%}
+          <div class="retro-product-page__description-panel">
+            <p class="retro-product-page__description-label">{{ section.settings.description_label | escape }}</p>
+            <div class="retro-product-page__description-copy">
+              {{ product.description }}
+            </div>
+          </div>
+        {%- endif -%}
+
+        {%- form 'product', product, class: 'retro-product-page__form' -%}
+          <input type="hidden" name="id" value="{{ current_variant.id }}">
+
+          {%- if section.settings.show_quantity -%}
+            <label class="retro-product-page__quantity">
+              <span>{{ section.settings.quantity_label | escape }}</span>
+              <input
+                type="number"
+                name="quantity"
+                value="1"
+                min="1"
+                {% if current_variant.inventory_management and current_variant.inventory_policy == 'deny' %}
+                  max="{{ current_variant.inventory_quantity }}"
+                {% endif %}
+              >
+            </label>
+          {%- endif -%}
+
+          <button
+            class="retro-product-page__button"
+            type="submit"
+            {% unless product.available %}
+              disabled
+            {% endunless %}
+          >
+            {%- if product.available -%}
+              {{ section.settings.button_label | escape }}
+            {%- else -%}
+              {{ section.settings.sold_out_button_label | escape }}
+            {%- endif -%}
+          </button>
+
+          {%- if section.settings.show_dynamic_checkout -%}
+            <div class="retro-product-page__dynamic-checkout">
+              {{ form | payment_button }}
+            </div>
+          {%- endif -%}
+        {%- endform -%}
+
+        {%- if section.settings.note != blank -%}
+          <div class="retro-product-page__note">
+            {{ section.settings.note }}
+          </div>
+        {%- endif -%}
+
+        {%- if section.blocks.size > 0 -%}
+          <div class="retro-product-page__badges" aria-label="{{ section.settings.badges_label | escape }}">
+            {%- for block in section.blocks -%}
+              <span class="retro-product-page__badge" {{ block.shopify_attributes }}>
+                {{ block.settings.text | escape }}
+              </span>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+      </div>
+    </aside>
   </div>
 </section>
 
 {% stylesheet %}
-  .retro-product-hero {
-    background: var(--color-background, transparent);
-    color: var(--retro-product-text, #f1eefa);
+  .retro-product-page {
+    background: var(--color-background, var(--retro-product-page-bg, #10111e));
+    color: var(--retro-product-page-text, #f1eefa);
   }
 
-  .retro-product-hero__inner {
+  .retro-product-page__layout {
     display: grid;
-    grid-template-columns: minmax(280px, var(--retro-product-media-width)) minmax(0, 1fr);
-    grid-template-areas: 'media content';
-    gap: var(--retro-product-gap);
+    grid-template-columns: minmax(0, 1fr) minmax(280px, var(--retro-product-page-sidebar-width));
+    gap: var(--retro-product-page-gap);
+    align-items: start;
+  }
+
+  .retro-product-page__intro {
+    display: grid;
+    grid-template-columns: minmax(180px, 0.72fr) minmax(0, 1fr);
+    gap: 4rem;
     align-items: center;
-    min-height: 68svh;
+    min-height: 52rem;
+    padding: 5.6rem;
+    background: var(--retro-product-page-hero-bg, #dce2f4);
+    color: var(--retro-product-page-dark-text, #1b1533);
   }
 
-  .retro-product-hero--media-right .retro-product-hero__inner {
-    grid-template-columns: minmax(0, 1fr) minmax(280px, var(--retro-product-media-width));
-    grid-template-areas: 'content media';
-  }
-
-  .retro-product-hero__media,
-  .retro-product-hero__content {
+  .retro-product-page__product-shot {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     min-width: 0;
   }
 
-  .retro-product-hero__media {
-    grid-area: media;
-  }
-
-  .retro-product-hero__content {
-    grid-area: content;
-    max-width: 62rem;
-  }
-
-  .retro-product-hero__screen {
-    display: grid;
-    grid-template-columns: 1fr 0.42fr;
-    gap: 1.2rem;
-    padding: 1.2rem;
-    border: 1px solid var(--retro-product-border, rgb(76 201 240 / 22%));
-    border-radius: 0.8rem;
-    background:
-      linear-gradient(90deg, rgb(76 201 240 / 9%) 1px, transparent 1px),
-      linear-gradient(rgb(76 201 240 / 9%) 1px, transparent 1px),
-      var(--retro-product-surface, #241c40);
-    background-size: 28px 28px;
-    box-shadow: inset 0 1px 0 rgb(255 255 255 / 5%);
-  }
-
-  .retro-product-hero__screen--count-1 {
-    grid-template-columns: 1fr;
-  }
-
-  .retro-product-hero__frame {
-    margin: 0;
-    min-width: 0;
-    border: 1px solid rgb(241 238 250 / 14%);
-    border-radius: var(--retro-product-image-radius);
-    background: rgb(8 7 16 / 42%);
-    overflow: hidden;
-    position: relative;
-  }
-
-  .retro-product-hero__frame::after {
-    content: '';
-    position: absolute;
-    inset-block-start: 0;
-    inset-inline-start: 0;
-    width: 4rem;
-    height: 0.3rem;
-    background: var(--retro-product-secondary, #b4ff39);
-  }
-
-  .retro-product-hero__frame--primary {
-    grid-row: span 2;
-  }
-
-  .retro-product-hero__image {
+  .retro-product-page__image {
     display: block;
-    width: 100%;
-    height: 100%;
-    aspect-ratio: var(--retro-product-image-ratio);
-    object-fit: var(--retro-product-image-fit);
+    width: var(--retro-product-page-image-size);
+    max-width: 100%;
+    aspect-ratio: var(--retro-product-page-image-ratio);
+    object-fit: var(--retro-product-page-image-fit);
+    filter: drop-shadow(0 2.8rem 3.4rem rgb(27 21 51 / 28%));
   }
 
-  .retro-product-hero__placeholder {
-    background: rgb(255 255 255 / 4%);
+  .retro-product-page__placeholder {
+    background: rgb(255 255 255 / 30%);
   }
 
-  .retro-product-hero__kicker {
-    display: inline-flex;
-    gap: 0.8rem;
-    align-items: center;
-    margin: 0 0 1.4rem;
-    color: var(--retro-product-accent, #4cc9f0);
+  .retro-product-page__copy {
+    max-width: 48rem;
+  }
+
+  .retro-product-page__kicker,
+  .retro-product-page__eyebrow,
+  .retro-product-page__description-label,
+  .retro-product-page__process-item p {
+    margin: 0;
     font-family: var(--font-accent--family);
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     font-style: var(--font-accent--style);
-    font-weight: 700;
-    letter-spacing: 0.12em;
+    font-weight: 800;
+    letter-spacing: 0.08em;
     line-height: 1.2;
     text-transform: uppercase;
   }
 
-  .retro-product-hero__kicker::before {
-    content: '';
-    width: 0.8rem;
-    height: 0.8rem;
-    border-radius: 50%;
-    background: var(--retro-product-secondary, #b4ff39);
-    box-shadow: 0 0 1.4rem rgb(180 255 57 / 60%);
+  .retro-product-page__kicker {
+    margin-block-end: 1.4rem;
+    color: var(--retro-product-page-accent, #4cc9f0);
   }
 
-  .retro-product-hero__heading {
+  .retro-product-page__title {
+    max-width: 10em;
     margin: 0;
-    color: var(--retro-product-heading, #f1eefa);
+    color: var(--retro-product-page-dark-text, #1b1533);
     font-family: var(--font-primary--family);
-    font-size: var(--retro-product-heading-size);
+    font-size: var(--retro-product-page-heading-size);
     font-style: var(--font-primary--style);
     font-weight: 700;
     letter-spacing: 0;
     line-height: 0.98;
-    overflow-wrap: anywhere;
   }
 
-  .retro-product-hero__meta {
+  .retro-product-page__lead {
+    max-width: 44rem;
+    margin-block-start: 1.8rem;
+    color: var(--retro-product-page-light-muted, #505165);
+    font-size: var(--retro-product-page-text-size);
+    line-height: 1.55;
+  }
+
+  .retro-product-page__lead > *,
+  .retro-product-page__note > *,
+  .retro-product-page__process-item div > * {
+    margin: 0;
+  }
+
+  .retro-product-page__section {
+    padding: 4rem 0 0;
+  }
+
+  .retro-product-page__section-title {
+    margin: 0 0 2rem;
+    color: var(--retro-product-page-heading, #f1eefa);
+    font-family: var(--font-primary--family);
+    font-size: 2.8rem;
+    font-style: var(--font-primary--style);
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: 1.1;
+  }
+
+  .retro-product-page__process {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.6rem;
+  }
+
+  .retro-product-page__process-item {
+    min-width: 0;
+    padding-block-start: 1.6rem;
+    border-block-start: 1px solid var(--retro-product-page-border, rgb(76 201 240 / 20%));
+  }
+
+  .retro-product-page__process-item p {
+    color: var(--retro-product-page-muted, #9b92b8);
+  }
+
+  .retro-product-page__process-item h3 {
+    margin: 0.7rem 0 0.7rem;
+    color: var(--retro-product-page-heading, #f1eefa);
+    font-family: var(--font-accent--family);
+    font-size: 1.6rem;
+    font-style: var(--font-accent--style);
+    font-weight: 800;
+    letter-spacing: 0;
+    line-height: 1.2;
+  }
+
+  .retro-product-page__process-item div {
+    color: var(--retro-product-page-muted, #9b92b8);
+    font-size: 1.4rem;
+    line-height: 1.45;
+  }
+
+  .retro-product-page__sidebar {
+    position: sticky;
+    inset-block-start: 1.6rem;
+  }
+
+  .retro-product-page__purchase {
+    padding: 2rem;
+    border-inline-start: 1px solid var(--retro-product-page-border, rgb(76 201 240 / 22%));
+    background: var(--retro-product-page-panel, #11111f);
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / 5%);
+  }
+
+  .retro-product-page__eyebrow {
+    color: var(--retro-product-page-muted, #9b92b8);
+  }
+
+  .retro-product-page__purchase-title {
+    margin: 0.8rem 0 1.2rem;
+    color: var(--retro-product-page-heading, #f1eefa);
+    font-family: var(--font-accent--family);
+    font-size: 1.6rem;
+    font-style: var(--font-accent--style);
+    font-weight: 800;
+    letter-spacing: 0;
+    line-height: 1.2;
+  }
+
+  .retro-product-page__price-row {
     display: flex;
     flex-wrap: wrap;
-    gap: 1rem;
-    align-items: center;
-    margin-block-start: 2.2rem;
+    gap: 0.8rem;
+    align-items: baseline;
   }
 
-  .retro-product-hero__price {
-    color: var(--retro-product-heading, #f1eefa);
+  .retro-product-page__price {
+    color: var(--retro-product-page-heading, #f1eefa);
     font-family: var(--font-accent--family);
-    font-size: var(--retro-product-price-size);
+    font-size: var(--retro-product-page-price-size);
     font-style: var(--font-accent--style);
     font-weight: 800;
     line-height: 1;
   }
 
-  .retro-product-hero__compare {
-    color: var(--retro-product-muted, #9b92b8);
-    font-family: var(--font-accent--family);
-    font-size: 1.7rem;
+  .retro-product-page__compare {
+    color: var(--retro-product-page-muted, #9b92b8);
+    font-size: 1.3rem;
     text-decoration: line-through;
   }
 
-  .retro-product-hero__stock,
-  .retro-product-hero__chip {
-    display: inline-flex;
-    align-items: center;
-    min-height: 3.2rem;
-    padding: 0.5rem 1.1rem;
-    border: 1px solid var(--retro-product-border, rgb(76 201 240 / 28%));
-    border-radius: 0.6rem;
-    color: var(--retro-product-accent, #4cc9f0);
-    font-family: var(--font-accent--family);
+  .retro-product-page__tax {
+    margin: 0.7rem 0 1.6rem;
+    color: var(--retro-product-page-muted, #9b92b8);
+    font-size: 1.2rem;
+    line-height: 1.35;
+  }
+
+  .retro-product-page__description-panel {
+    margin-block: 1.6rem;
+    padding: 1.4rem;
+    border: 1px solid var(--retro-product-page-accent, #4cc9f0);
+    border-radius: 0.4rem;
+    background: rgb(27 21 51 / 38%);
+  }
+
+  .retro-product-page__description-label {
+    margin-block-end: 0.9rem;
+    color: var(--retro-product-page-accent, #4cc9f0);
+  }
+
+  .retro-product-page__description-copy {
+    display: -webkit-box;
+    max-height: 14rem;
+    overflow: hidden;
+    color: var(--retro-product-page-muted, #9b92b8);
     font-size: 1.3rem;
-    font-style: var(--font-accent--style);
-    font-weight: 700;
-    line-height: 1.1;
+    line-height: 1.45;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 6;
   }
 
-  .retro-product-hero__stock--sold {
-    color: var(--retro-product-muted, #9b92b8);
+  .retro-product-page__description-copy > * {
+    margin: 0;
   }
 
-  .retro-product-hero__description {
-    max-width: 55rem;
-    margin-block-start: 2rem;
-    color: var(--retro-product-muted, #9b92b8);
-    font-family: var(--font-body--family);
-    font-size: var(--retro-product-text-size);
-    line-height: 1.55;
+  .retro-product-page__description-copy > * + * {
+    margin-block-start: 0.8rem;
   }
 
-  .retro-product-hero__chips {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.8rem;
-    margin-block-start: 2.4rem;
-  }
-
-  .retro-product-hero__chip {
-    color: var(--retro-product-heading, #f1eefa);
-    background: rgb(36 28 64 / 72%);
-  }
-
-  .retro-product-hero__form {
+  .retro-product-page__form {
     display: grid;
-    grid-template-columns: auto minmax(18rem, 1fr);
-    gap: 1.2rem;
-    align-items: end;
-    max-width: 52rem;
-    margin-block-start: 3rem;
+    gap: 1rem;
   }
 
-  .retro-product-hero__quantity {
+  .retro-product-page__quantity {
     display: grid;
     gap: 0.6rem;
-    color: var(--retro-product-muted, #9b92b8);
+    color: var(--retro-product-page-muted, #9b92b8);
     font-family: var(--font-accent--family);
-    font-size: 1.2rem;
-    font-weight: 700;
+    font-size: 1.1rem;
+    font-weight: 800;
     letter-spacing: 0.08em;
     text-transform: uppercase;
   }
 
-  .retro-product-hero__quantity input {
-    width: 8.6rem;
-    min-height: 4.8rem;
-    padding: 0.8rem 1rem;
-    border: 1px solid var(--retro-product-border, rgb(76 201 240 / 35%));
-    border-radius: 0.6rem;
-    background: transparent;
-    color: var(--retro-product-heading, #f1eefa);
-    font: inherit;
-    letter-spacing: 0;
-  }
-
-  .retro-product-hero__button {
-    min-height: 4.8rem;
-    padding: 1rem 2.2rem;
-    border: 1px solid var(--retro-product-button-border, #ff7a45);
-    border-radius: 0.6rem;
-    background: var(--retro-product-button-bg, #ff7a45);
-    color: var(--retro-product-button-text, #1b1533);
-    cursor: pointer;
+  .retro-product-page__quantity input,
+  .retro-product-page__button {
+    width: 100%;
+    min-height: 4.6rem;
+    border-radius: 0.4rem;
     font-family: var(--font-accent--family);
-    font-size: 1.5rem;
     font-style: var(--font-accent--style);
     font-weight: 800;
-    line-height: 1.2;
+  }
+
+  .retro-product-page__quantity input {
+    padding: 0.8rem 1rem;
+    border: 1px solid var(--retro-product-page-border, rgb(76 201 240 / 28%));
+    background: transparent;
+    color: var(--retro-product-page-heading, #f1eefa);
+  }
+
+  .retro-product-page__button {
+    border: 1px solid var(--retro-product-page-button-bg, #ff7a45);
+    background: var(--retro-product-page-button-bg, #ff7a45);
+    color: var(--retro-product-page-button-text, #1b1533);
+    cursor: pointer;
+    font-size: 1.4rem;
     transition:
       transform 160ms ease,
       opacity 160ms ease;
   }
 
-  .retro-product-hero__button:hover {
+  .retro-product-page__button:hover {
     opacity: 0.94;
     transform: translateY(-1px);
   }
 
-  .retro-product-hero__button:disabled {
+  .retro-product-page__button:disabled {
     cursor: not-allowed;
     opacity: 0.55;
     transform: none;
   }
 
-  .retro-product-hero__button:focus-visible,
-  .retro-product-hero__quantity input:focus-visible {
-    outline: 2px solid var(--retro-product-accent, #4cc9f0);
+  .retro-product-page__dynamic-checkout .shopify-payment-button__button {
+    min-height: 4.4rem;
+    border-radius: 0.4rem;
+  }
+
+  .retro-product-page__note {
+    margin-block-start: 1.6rem;
+    color: var(--retro-product-page-muted, #9b92b8);
+    font-size: 1.2rem;
+    line-height: 1.45;
+  }
+
+  .retro-product-page__badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-block-start: 1.6rem;
+  }
+
+  .retro-product-page__badge {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.2rem;
+    padding: 0.35rem 0.7rem;
+    border: 1px solid var(--retro-product-page-border, rgb(76 201 240 / 26%));
+    border-radius: 0.3rem;
+    color: var(--retro-product-page-heading, #f1eefa);
+    font-family: var(--font-accent--family);
+    font-size: 1rem;
+    font-style: var(--font-accent--style);
+    font-weight: 800;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  .retro-product-page__button:focus-visible,
+  .retro-product-page__quantity input:focus-visible {
+    outline: 2px solid var(--retro-product-page-accent, #4cc9f0);
     outline-offset: 3px;
   }
 
-  .retro-product-hero__note {
-    max-width: 48rem;
-    margin-block-start: 1.6rem;
-    color: var(--retro-product-muted, #9b92b8);
-    font-size: 1.4rem;
-    line-height: 1.4;
-  }
-
-  .retro-product-hero__note > * {
-    margin: 0;
-  }
-
   @media screen and (max-width: 989px) {
-    .retro-product-hero__inner,
-    .retro-product-hero--media-right .retro-product-hero__inner {
+    .retro-product-page__layout {
       grid-template-columns: 1fr;
-      grid-template-areas: 'media' 'content';
-      gap: 3.2rem;
-      min-height: 0;
     }
 
-    .retro-product-hero__heading {
-      font-size: var(--retro-product-heading-mobile);
+    .retro-product-page__sidebar {
+      position: static;
+    }
+
+    .retro-product-page__purchase {
+      border: 1px solid var(--retro-product-page-border, rgb(76 201 240 / 22%));
     }
   }
 
-  @media screen and (max-width: 649px) {
-    .retro-product-hero__screen {
+  @media screen and (max-width: 749px) {
+    .retro-product-page__intro {
       grid-template-columns: 1fr;
-      padding: 0.8rem;
+      gap: 2.8rem;
+      min-height: 0;
+      padding: 3.2rem 2rem;
     }
 
-    .retro-product-hero__frame:not(.retro-product-hero__frame--primary) {
-      display: none;
+    .retro-product-page__title {
+      font-size: var(--retro-product-page-heading-mobile);
     }
 
-    .retro-product-hero__description {
-      font-size: min(var(--retro-product-text-size), 1.6rem);
+    .retro-product-page__lead {
+      font-size: min(var(--retro-product-page-text-size), 1.5rem);
     }
 
-    .retro-product-hero__form {
+    .retro-product-page__process {
       grid-template-columns: 1fr;
-    }
-
-    .retro-product-hero__quantity input,
-    .retro-product-hero__button {
-      width: 100%;
     }
   }
 {% endstylesheet %}
@@ -494,7 +566,7 @@
   "blocks": [
     {
       "type": "badge",
-      "name": "Etiqueta tecnica",
+      "name": "Etiqueta inferior",
       "settings": [
         {
           "type": "text",
@@ -510,40 +582,49 @@
       "type": "text",
       "id": "kicker",
       "label": "Etiqueta superior",
-      "default": "Consola retro portatil"
+      "default": "El regalo que se enciende solo"
+    },
+    {
+      "type": "text",
+      "id": "display_heading",
+      "label": "Titulo principal",
+      "default": "Veinte mil juegos, envueltos"
+    },
+    {
+      "type": "richtext",
+      "id": "display_text",
+      "label": "Texto principal",
+      "default": "<p>La R36 Ultra llega cargada, con la tarjeta puesta y el menu en espanol. Quien la recibe solo tiene que darle al boton.</p>"
     },
     {
       "type": "checkbox",
       "id": "show_description",
-      "label": "Mostrar descripcion del producto",
+      "label": "Mostrar descripcion en el panel de compra",
       "default": true
     },
     {
-      "type": "range",
-      "id": "description_words",
-      "min": 12,
-      "max": 70,
-      "step": 2,
-      "label": "Palabras de descripcion",
-      "default": 32
+      "type": "text",
+      "id": "description_label",
+      "label": "Titulo de descripcion",
+      "default": "Descripcion del producto"
+    },
+    {
+      "type": "text",
+      "id": "purchase_panel_label",
+      "label": "Etiqueta accesible del panel",
+      "default": "Compra del producto"
+    },
+    {
+      "type": "text",
+      "id": "tax_text",
+      "label": "Texto bajo precio",
+      "default": "IVA incluido. Envio calculado en el checkout."
     },
     {
       "type": "text",
       "id": "badges_label",
-      "label": "Etiqueta accesible de chips",
-      "default": "Caracteristicas clave"
-    },
-    {
-      "type": "text",
-      "id": "stock_label",
-      "label": "Texto en stock",
-      "default": "En stock"
-    },
-    {
-      "type": "text",
-      "id": "sold_out_label",
-      "label": "Texto agotado",
-      "default": "Agotado"
+      "label": "Etiqueta accesible de pagos",
+      "default": "Metodos y detalles"
     },
     {
       "type": "text",
@@ -555,7 +636,7 @@
       "type": "checkbox",
       "id": "show_quantity",
       "label": "Mostrar cantidad",
-      "default": true
+      "default": false
     },
     {
       "type": "text",
@@ -570,10 +651,108 @@
       "default": "Sin stock"
     },
     {
+      "type": "checkbox",
+      "id": "show_dynamic_checkout",
+      "label": "Mostrar boton de pago acelerado",
+      "default": true
+    },
+    {
       "type": "richtext",
       "id": "note",
-      "label": "Nota bajo el boton",
-      "default": "<p>Envio 24-48 h desde Valencia. Garantia de 2 anos y devolucion durante 30 dias.</p>"
+      "label": "Nota bajo botones",
+      "default": "<p>Envio gratis en peninsula 24-48 h. Garantia de 2 anos. 30 dias para devolverla.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Bloque como va a ir la cosa"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_process",
+      "label": "Mostrar pasos",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "process_heading",
+      "label": "Titulo pasos",
+      "default": "Como va a ir la cosa"
+    },
+    {
+      "type": "text",
+      "id": "step_one_label",
+      "label": "Paso 1 etiqueta",
+      "default": "Paso 01"
+    },
+    {
+      "type": "text",
+      "id": "step_one_title",
+      "label": "Paso 1 titulo",
+      "default": "Lo pides hoy"
+    },
+    {
+      "type": "richtext",
+      "id": "step_one_text",
+      "label": "Paso 1 texto",
+      "default": "<p>Antes de las 15:00 sale el mismo dia. Envio gratis y con factura dentro de la caja.</p>"
+    },
+    {
+      "type": "text",
+      "id": "step_two_label",
+      "label": "Paso 2 etiqueta",
+      "default": "Paso 02"
+    },
+    {
+      "type": "text",
+      "id": "step_two_title",
+      "label": "Paso 2 titulo",
+      "default": "Llega envuelta"
+    },
+    {
+      "type": "richtext",
+      "id": "step_two_text",
+      "label": "Paso 2 texto",
+      "default": "<p>Caja de regalo, cinta y una tarjeta con el mensaje que nos escribas.</p>"
+    },
+    {
+      "type": "text",
+      "id": "step_three_label",
+      "label": "Paso 3 etiqueta",
+      "default": "Paso 03"
+    },
+    {
+      "type": "text",
+      "id": "step_three_title",
+      "label": "Paso 3 titulo",
+      "default": "Se enciende y ya"
+    },
+    {
+      "type": "richtext",
+      "id": "step_three_text",
+      "label": "Paso 3 texto",
+      "default": "<p>Ni cuentas, ni descargas, ni cables raros. El menu aparece con los juegos dentro.</p>"
+    },
+    {
+      "type": "text",
+      "id": "step_four_label",
+      "label": "Paso 4 etiqueta",
+      "default": "Paso 04"
+    },
+    {
+      "type": "text",
+      "id": "step_four_title",
+      "label": "Paso 4 titulo",
+      "default": "Si falla, la cambiamos"
+    },
+    {
+      "type": "richtext",
+      "id": "step_four_text",
+      "label": "Paso 4 texto",
+      "default": "<p>Dos anos de garantia y 30 dias para devolverla. Te recogemos nosotros.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
     },
     {
       "type": "select",
@@ -589,47 +768,52 @@
           "label": "Completo"
         }
       ],
-      "default": "page-width"
-    },
-    {
-      "type": "select",
-      "id": "media_position",
-      "label": "Posicion de imagen",
-      "options": [
-        {
-          "value": "left",
-          "label": "Izquierda"
-        },
-        {
-          "value": "right",
-          "label": "Derecha"
-        }
-      ],
-      "default": "left"
+      "default": "full-width"
     },
     {
       "type": "range",
-      "id": "media_width",
-      "min": 35,
-      "max": 60,
+      "id": "sidebar_width",
+      "min": 260,
+      "max": 420,
+      "step": 10,
+      "unit": "px",
+      "label": "Ancho panel compra",
+      "default": 330
+    },
+    {
+      "type": "range",
+      "id": "column_gap",
+      "min": 0,
+      "max": 48,
+      "step": 4,
+      "unit": "px",
+      "label": "Separacion columnas",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "image_size",
+      "min": 45,
+      "max": 100,
       "step": 1,
       "unit": "%",
-      "label": "Ancho de imagen",
-      "default": 52
+      "label": "Tamano imagen",
+      "default": 76
     },
     {
       "type": "range",
-      "id": "media_limit",
-      "min": 1,
-      "max": 5,
-      "step": 1,
-      "label": "Imagenes visibles",
-      "default": 3
+      "id": "image_resolution",
+      "min": 720,
+      "max": 2400,
+      "step": 120,
+      "unit": "px",
+      "label": "Resolucion imagen",
+      "default": 1600
     },
     {
       "type": "select",
       "id": "image_fit",
-      "label": "Ajuste de imagen",
+      "label": "Ajuste imagen",
       "options": [
         {
           "value": "contain",
@@ -645,8 +829,12 @@
     {
       "type": "select",
       "id": "image_ratio",
-      "label": "Formato de imagen",
+      "label": "Formato imagen",
       "options": [
+        {
+          "value": "auto",
+          "label": "Original"
+        },
         {
           "value": "1 / 1",
           "label": "Cuadrado"
@@ -654,37 +842,9 @@
         {
           "value": "4 / 5",
           "label": "Vertical"
-        },
-        {
-          "value": "16 / 10",
-          "label": "Horizontal"
-        },
-        {
-          "value": "auto",
-          "label": "Original"
         }
       ],
-      "default": "1 / 1"
-    },
-    {
-      "type": "range",
-      "id": "image_resolution",
-      "min": 720,
-      "max": 2400,
-      "step": 120,
-      "unit": "px",
-      "label": "Resolucion de imagen",
-      "default": 1600
-    },
-    {
-      "type": "range",
-      "id": "image_border_radius",
-      "min": 0,
-      "max": 24,
-      "step": 1,
-      "unit": "px",
-      "label": "Radio de imagen",
-      "default": 8
+      "default": "auto"
     },
     {
       "type": "header",
@@ -693,83 +853,89 @@
     {
       "type": "color",
       "id": "background_color",
-      "label": "Color de fondo",
-      "default": "#1B1533"
+      "label": "Fondo pagina",
+      "default": "#11111F"
     },
     {
       "type": "color",
-      "id": "surface_color",
-      "label": "Color de superficie",
-      "default": "#241C40"
+      "id": "hero_panel_color",
+      "label": "Fondo hero claro",
+      "default": "#DCE2F4"
     },
     {
       "type": "color",
-      "id": "border_color",
-      "label": "Color de borde",
-      "alpha": true,
-      "default": "#4CC9F033"
+      "id": "panel_color",
+      "label": "Fondo panel compra",
+      "default": "#11111F"
     },
     {
       "type": "color",
       "id": "heading_color",
-      "label": "Color de titulo",
+      "label": "Texto claro",
       "default": "#F1EEFA"
     },
     {
       "type": "color",
       "id": "text_color",
-      "label": "Color de texto",
+      "label": "Texto pagina",
       "default": "#F1EEFA"
     },
     {
       "type": "color",
+      "id": "dark_text_color",
+      "label": "Texto sobre hero claro",
+      "default": "#151427"
+    },
+    {
+      "type": "color",
       "id": "muted_color",
-      "label": "Color de texto secundario",
+      "label": "Texto secundario oscuro",
       "default": "#9B92B8"
     },
     {
       "type": "color",
-      "id": "accent_color",
-      "label": "Acento cian",
-      "default": "#4CC9F0"
+      "id": "light_muted_color",
+      "label": "Texto secundario claro",
+      "default": "#505165"
     },
     {
       "type": "color",
-      "id": "secondary_accent_color",
-      "label": "Acento lima",
-      "default": "#B4FF39"
+      "id": "border_color",
+      "label": "Lineas",
+      "alpha": true,
+      "default": "#4CC9F033"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Acento",
+      "default": "#6B5CFF"
     },
     {
       "type": "color",
       "id": "button_background_color",
-      "label": "Fondo del boton",
-      "default": "#FF7A45"
+      "label": "Fondo boton",
+      "default": "#6B5CFF"
     },
     {
       "type": "color",
       "id": "button_text_color",
-      "label": "Texto del boton",
-      "default": "#1B1533"
-    },
-    {
-      "type": "color",
-      "id": "button_border_color",
-      "label": "Borde del boton",
-      "default": "#FF7A45"
+      "label": "Texto boton",
+      "default": "#FFFFFF"
     },
     {
       "type": "header",
-      "content": "Tipografia y espaciado"
+      "content": "Tipografia"
     },
     {
       "type": "range",
       "id": "heading_size",
-      "min": 38,
-      "max": 92,
+      "min": 36,
+      "max": 86,
       "step": 2,
       "unit": "px",
       "label": "Tamano titulo escritorio",
-      "default": 64
+      "default": 54
     },
     {
       "type": "range",
@@ -785,51 +951,41 @@
       "type": "range",
       "id": "price_size",
       "min": 24,
-      "max": 58,
+      "max": 52,
       "step": 2,
       "unit": "px",
       "label": "Tamano precio",
-      "default": 38
+      "default": 32
     },
     {
       "type": "range",
       "id": "text_size",
       "min": 14,
-      "max": 24,
+      "max": 22,
       "step": 1,
       "unit": "px",
       "label": "Tamano texto",
-      "default": 18
-    },
-    {
-      "type": "range",
-      "id": "column_gap",
-      "min": 24,
-      "max": 96,
-      "step": 4,
-      "unit": "px",
-      "label": "Separacion entre columnas",
-      "default": 56
+      "default": 16
     },
     {
       "type": "range",
       "id": "padding-block-start",
       "min": 0,
-      "max": 120,
+      "max": 100,
       "step": 4,
       "unit": "px",
       "label": "Relleno superior",
-      "default": 56
+      "default": 0
     },
     {
       "type": "range",
       "id": "padding-block-end",
       "min": 0,
-      "max": 120,
+      "max": 100,
       "step": 4,
       "unit": "px",
       "label": "Relleno inferior",
-      "default": 48
+      "default": 56
     }
   ],
   "presets": [
@@ -839,19 +995,25 @@
         {
           "type": "badge",
           "settings": {
-            "text": "720x720 IPS"
+            "text": "Visa"
           }
         },
         {
           "type": "badge",
           "settings": {
-            "text": "3 000 mAh"
+            "text": "Mastercard"
           }
         },
         {
           "type": "badge",
           "settings": {
-            "text": "64 GB incluidos"
+            "text": "PayPal"
+          }
+        },
+        {
+          "type": "badge",
+          "settings": {
+            "text": "Bizum"
           }
         }
       ]

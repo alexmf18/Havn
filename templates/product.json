@@ -6,19 +6,19 @@
         "badge_screen": {
           "type": "badge",
           "settings": {
-            "text": "720x720 IPS"
+            "text": "Visa"
           }
         },
         "badge_battery": {
           "type": "badge",
           "settings": {
-            "text": "3 000 mAh"
+            "text": "Mastercard"
           }
         },
         "badge_storage": {
           "type": "badge",
           "settings": {
-            "text": "64 GB incluidos"
+            "text": "PayPal"
           }
         }
       },
@@ -28,217 +28,59 @@
         "badge_storage"
       ],
       "settings": {
-        "kicker": "R36 Ultra",
+        "kicker": "El regalo que se enciende solo",
+        "display_heading": "Veinte mil juegos, envueltos",
+        "display_text": "<p>La R36 Ultra llega cargada, con la tarjeta puesta y el menu en espanol. Quien la recibe solo tiene que darle al boton.</p>",
         "show_description": true,
-        "description_words": 34,
-        "badges_label": "Caracteristicas clave",
-        "stock_label": "En stock",
-        "sold_out_label": "Agotado",
+        "description_label": "Descripcion del producto",
+        "purchase_panel_label": "Compra del producto",
+        "tax_text": "IVA incluido. Envio calculado en el checkout.",
+        "badges_label": "Metodos y detalles",
         "quantity_label": "Cantidad",
-        "show_quantity": true,
+        "show_quantity": false,
         "button_label": "Anadir al carrito",
         "sold_out_button_label": "Sin stock",
-        "note": "<p>Envio 24-48 h desde Valencia. Garantia de 2 anos y devolucion durante 30 dias.</p>",
-        "section_width": "page-width",
-        "media_position": "left",
-        "media_width": 52,
-        "media_limit": 3,
-        "image_fit": "contain",
-        "image_ratio": "1 / 1",
-        "image_resolution": 1600,
-        "image_border_radius": 8,
-        "background_color": "#1B1533",
-        "surface_color": "#241C40",
-        "border_color": "#4CC9F033",
-        "heading_color": "#F1EEFA",
-        "text_color": "#F1EEFA",
-        "muted_color": "#9B92B8",
-        "accent_color": "#4CC9F0",
-        "secondary_accent_color": "#B4FF39",
-        "button_background_color": "#FF7A45",
-        "button_text_color": "#1B1533",
-        "button_border_color": "#FF7A45",
-        "heading_size": 64,
-        "heading_size_mobile": 40,
-        "price_size": 38,
-        "text_size": 18,
-        "column_gap": 56,
-        "padding-block-start": 56,
-        "padding-block-end": 48
-      }
-    },
-    "retro_feature_columns_product": {
-      "type": "retro-feature-columns",
-      "blocks": {
-        "feature_screen": {
-          "type": "feature",
-          "settings": {
-            "label": "PANTALLA",
-            "heading": "720x720",
-            "text": "<p>IPS de 4 pulgadas laminada en optica. Pixeles limpios, color estable y juego nitido.</p>"
-          }
-        },
-        "feature_battery": {
-          "type": "feature",
-          "settings": {
-            "label": "BATERIA",
-            "heading": "8 horas",
-            "text": "<p>3 000 mAh y extraible: se cambia sin herramientas y se ve la carga por fuera.</p>"
-          }
-        },
-        "feature_controls": {
-          "type": "feature",
-          "settings": {
-            "label": "MANDOS",
-            "heading": "2 · RGB",
-            "text": "<p>Joysticks 3D con anillo de color, gatillos mecanicos y cruceta de verdad.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "feature_screen",
-        "feature_battery",
-        "feature_controls"
-      ],
-      "settings": {
+        "show_dynamic_checkout": true,
+        "note": "<p>Envio gratis en peninsula 24-48 h. Garantia de 2 anos. 30 dias para devolverla.</p>",
+        "show_process": true,
+        "process_heading": "Como va a ir la cosa",
+        "step_one_label": "Paso 01",
+        "step_one_title": "Lo pides hoy",
+        "step_one_text": "<p>Antes de las 15:00 sale el mismo dia. Envio gratis y con factura dentro de la caja.</p>",
+        "step_two_label": "Paso 02",
+        "step_two_title": "Llega envuelta",
+        "step_two_text": "<p>Caja de regalo, cinta y una tarjeta con el mensaje que nos escribas.</p>",
+        "step_three_label": "Paso 03",
+        "step_three_title": "Se enciende y ya",
+        "step_three_text": "<p>Ni cuentas, ni descargas, ni cables raros. El menu aparece con los juegos dentro.</p>",
+        "step_four_label": "Paso 04",
+        "step_four_title": "Si falla, la cambiamos",
+        "step_four_text": "<p>Dos anos de garantia y 30 dias para devolverla. Te recogemos nosotros.</p>",
         "section_width": "full-width",
-        "background_color": "#1B1533",
-        "surface_color": "#241C40",
-        "border_color": "#4CC9F033",
-        "label_color": "#9B92B8",
-        "heading_color": "#F1EEFA",
-        "text_color": "#C9C4D8",
-        "padding-block-start": 0,
-        "padding-block-end": 0
-      }
-    },
-    "console_description_product": {
-      "type": "console-description",
-      "blocks": {
-        "console_nes": {
-          "type": "console",
-          "settings": {
-            "name": "NES",
-            "highlight": false
-          }
-        },
-        "console_gb": {
-          "type": "console",
-          "settings": {
-            "name": "Game Boy",
-            "highlight": false
-          }
-        },
-        "console_gba": {
-          "type": "console",
-          "settings": {
-            "name": "GBA",
-            "highlight": false
-          }
-        },
-        "console_md": {
-          "type": "console",
-          "settings": {
-            "name": "Mega Drive",
-            "highlight": false
-          }
-        },
-        "console_snes": {
-          "type": "console",
-          "settings": {
-            "name": "Super Nintendo",
-            "highlight": false
-          }
-        },
-        "console_mame": {
-          "type": "console",
-          "settings": {
-            "name": "MAME",
-            "highlight": false
-          }
-        },
-        "console_psp": {
-          "type": "console",
-          "settings": {
-            "name": "PSP",
-            "highlight": false
-          }
-        },
-        "console_n64": {
-          "type": "console",
-          "settings": {
-            "name": "Nintendo 64",
-            "highlight": true
-          }
-        },
-        "stat_games": {
-          "type": "stat",
-          "settings": {
-            "value": "20 000",
-            "label": "juegos preinstalados"
-          }
-        },
-        "stat_storage": {
-          "type": "stat",
-          "settings": {
-            "value": "64 GB",
-            "label": "tarjeta incluida"
-          }
-        },
-        "stat_weight": {
-          "type": "stat",
-          "settings": {
-            "value": "190 g",
-            "label": "peso con bateria"
-          }
-        }
-      },
-      "block_order": [
-        "console_nes",
-        "console_gb",
-        "console_gba",
-        "console_md",
-        "console_snes",
-        "console_mame",
-        "console_psp",
-        "console_n64",
-        "stat_games",
-        "stat_storage",
-        "stat_weight"
-      ],
-      "settings": {
-        "heading": "Once consolas, una sola caja",
-        "text": "<p>Cada emulador llega instalado y probado. Los juegos ya estan dentro, ordenados por sistema.</p>",
-        "console_list_label": "Consolas emuladas",
-        "caption": "Imagen del producto publicado",
-        "section_width": "page-width",
-        "image_position": "right",
-        "image_width": 40,
-        "column_gap": 64,
-        "background_color": "#1B1533",
-        "surface_color": "#241C4000",
+        "sidebar_width": 330,
+        "column_gap": 0,
+        "image_size": 76,
+        "image_resolution": 1600,
+        "image_fit": "contain",
+        "image_ratio": "auto",
+        "background_color": "#11111F",
+        "hero_panel_color": "#DCE2F4",
+        "panel_color": "#11111F",
         "heading_color": "#F1EEFA",
         "text_color": "#F1EEFA",
+        "dark_text_color": "#151427",
         "muted_color": "#9B92B8",
-        "accent_color": "#A99CFF",
-        "chip_background_color": "#1B153300",
-        "chip_active_background_color": "#564A86",
-        "divider_color": "#4CC9F033",
-        "heading_size": 48,
-        "heading_size_mobile": 36,
-        "text_size": 18,
-        "chip_text_size": 16,
-        "stat_value_size": 38,
-        "image_fit": "contain",
-        "image_ratio": "1 / 1",
-        "image_max_height": 560,
-        "image_resolution": 1600,
-        "image_background_color": "#241C4052",
-        "image_border_radius": 8,
-        "image_border_width": 0,
-        "image_border_color": "#F1EEFA",
-        "padding-block-start": 72,
-        "padding-block-end": 72
+        "light_muted_color": "#505165",
+        "border_color": "#4CC9F033",
+        "accent_color": "#6B5CFF",
+        "button_background_color": "#6B5CFF",
+        "button_text_color": "#FFFFFF",
+        "heading_size": 54,
+        "heading_size_mobile": 40,
+        "price_size": 32,
+        "text_size": 16,
+        "padding-block-start": 0,
+        "padding-block-end": 56
       }
     },
     "box_contents_product": {
@@ -280,9 +122,9 @@
         "item_guide"
       ],
       "settings": {
-        "heading": "En la caja",
-        "section_width": "page-width",
-        "background_color": "#1B1533",
+        "heading": "Lo que hay dentro",
+        "section_width": "full-width",
+        "background_color": "#11111F",
         "heading_color": "#F1EEFA",
         "item_title_color": "#F1EEFA",
         "item_text_color": "#9B92B8",
@@ -297,30 +139,6 @@
         "card_border_radius": 8,
         "padding-block-start": 40,
         "padding-block-end": 72
-      }
-    },
-    "warranty_cta_product": {
-      "type": "warranty-cta",
-      "settings": {
-        "heading": "Garantia de 2 anos y 30 dias para pensarlo",
-        "text": "<p>Si no encaja, la recogemos en tu casa y te devolvemos el importe completo. Sin preguntas y sin coste.</p>",
-        "button_label": "Comprar ahora · 45 €",
-        "button_link": "/cart/add?id=60483272704334&quantity=1",
-        "open_in_new_tab": false,
-        "section_width": "full-width",
-        "background_color": "#1B1533",
-        "panel_color": "#20204A",
-        "border_color": "#4CC9F033",
-        "heading_color": "#F1EEFA",
-        "text_color": "#C9C4D8",
-        "button_text_color": "#1B1533",
-        "button_background_color": "#FF7A45",
-        "button_border_color": "#FF7A45",
-        "heading_size": 30,
-        "text_size": 15,
-        "button_text_size": 15,
-        "padding-block-start": 0,
-        "padding-block-end": 0
       }
     },
     "shipping_faq_product": {
@@ -393,7 +211,7 @@
         "heading": "Envios y preguntas",
         "text": "<p>Salimos de Valencia. Pedidos antes de las 15:00 se envian el mismo dia.</p>",
         "section_width": "page-width",
-        "background_color": "#1B1533",
+        "background_color": "#11111F",
         "heading_color": "#F1EEFA",
         "text_color": "#F1EEFA",
         "muted_color": "#9B92B8",
@@ -410,10 +228,7 @@
   },
   "order": [
     "retro_product_hero_product",
-    "retro_feature_columns_product",
-    "console_description_product",
     "box_contents_product",
-    "warranty_cta_product",
     "shipping_faq_product"
   ]
 }
